@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Name="moodMainMenu"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mootra.MainPage"
+             Appearing="moodMainMenu_Appearing">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryColor">#00e5ff</Color>
+            <Color x:Key="SecondaryColor">#00cee5</Color>
+            <Color x:Key="TextColor">Black</Color>
+            <Color x:Key="TextColorDark">White</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <Grid ColumnDefinitions="3" BackgroundColor="{DynamicResource PrimaryColor}" Padding="8">
+            <Label Grid.Column="1" Text="Mootra" TextColor="{DynamicResource TextColor}" FontSize="24" FontAttributes="Bold" VerticalTextAlignment="Center"/>
+            <Button Grid.Column="3" x:Name="settingsButton" Text="Settings" BackgroundColor="#00cee5" CornerRadius="16" Clicked="settingsButton_Clicked"/>
+        </Grid>
+        <StackLayout Padding="30,10,30,10">
+            <Label Text="Right now I feel..." TextColor="{DynamicResource TextColor}" FontSize="32"/>
+            <Picker x:Name="moodPicker" Title="Select..." PropertyChanged="moodPicker_PropertyChanged"/>
+            <Label Text="Or add a new one..." TextColor="{DynamicResource TextColor}" FontSize="24"/>
+            <Editor x:Name="moodEditor" Unfocused="moodEditor_Unfocused"/>
+            <Grid ColumnDefinitions="2">
+                <Button Grid.Column="1" x:Name="moodClearButton" Text="Clear" CornerRadius="16" Clicked="moodClearButton_Clicked"/>
+                <Button Grid.Column="2" x:Name="moodSubmitButton" Text="Submit" BackgroundColor="{DynamicResource SecondaryColor}" CornerRadius="16" Clicked="moodSubmitButton_Clicked"/>
+            </Grid>
+        </StackLayout>
+        <StackLayout x:Name="moodCalendar">
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>

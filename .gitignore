@@ -1,0 +1,11 @@
+# Debug folders
+Mootra.Android/bin/Debug
+Mootra.Android/obj/Debug
+Mootra/bin/Debug
+Mootra/obj/Debug
+
+# Windows
+Thumbs.db
+
+# MacOS
+.DS_Store
