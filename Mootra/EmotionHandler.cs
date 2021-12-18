@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Mootra
 {
@@ -15,7 +13,7 @@ namespace Mootra
         /// <summary>
         /// Contains the current emotion name.
         /// </summary>
-        private string currentEmotionName;
+        private Emotion currentEmotion;
 
         /// <summary>
         /// Contains a list of emotions.
@@ -39,13 +37,13 @@ namespace Mootra
         }
 
         /// <summary>
-        /// Gets or sets the current emotion name.
+        /// Gets or sets the current emotion.
         /// </summary>
-        public string CurrentEmotionName
+        public Emotion CurrentEmotion
         {
-            get { return this.currentEmotionName; }
+            get { return this.currentEmotion; }
 
-            set { this.currentEmotionName = value; }
+            set { this.currentEmotion = value; }
         }
 
         /// <summary>
@@ -72,28 +70,6 @@ namespace Mootra
         public void RemoveEmotion(Emotion emotion)
         {
             this.emotions.Remove(emotion);
-        }
-
-        /// <summary>
-        /// Saves the current class instance to a file.
-        /// </summary>
-        /// <param name="fileName">The file to save to.</param>
-        public void SaveToFile(string fileName)
-        {
-            BinaryFormatter formatter = new BinaryFormatter();
-
-            using (Stream stream = File.Create(fileName))
-            {
-                formatter.Serialize(stream, this);
-            }
-        }
-
-        /// <summary>
-        /// Actions to take on deserialization.
-        /// </summary>
-        public void OnDeserialized()
-        {
-            // Haven't implemented serializaton.
         }
     }
 }

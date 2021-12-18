@@ -5,6 +5,7 @@ namespace Mootra
     /// <summary>
     /// The class that represents an emotion.
     /// </summary>
+    [Serializable]
     public class Emotion
     {
         /// <summary>
@@ -36,12 +37,20 @@ namespace Mootra
         }
 
         /// <summary>
+        /// Gets the date of creation.
+        /// </summary>
+        public DateTime DateCreated
+        {
+            get { return this.dateCreated; }
+        }
+
+        /// <summary>
         /// Converts the class into a readable string format.
         /// </summary>
         /// <returns>The name of the emotion.</returns>
         public override string ToString()
         {
-            return this.name;
+            return this.Name;
         }
     }
 }

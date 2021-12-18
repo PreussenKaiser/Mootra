@@ -28,8 +28,8 @@
                 <Button Grid.Column="1" x:Name="moodClearButton" Text="Clear" CornerRadius="16" Clicked="moodClearButton_Clicked"/>
                 <Button Grid.Column="2" x:Name="moodSubmitButton" Text="Submit" BackgroundColor="{DynamicResource SecondaryColor}" CornerRadius="16" Clicked="moodSubmitButton_Clicked"/>
             </Grid>
-        </StackLayout>
-        <StackLayout x:Name="moodCalendar">
+            <StackLayout x:Name="moodCalendar">
+            </StackLayout>
         </StackLayout>
     </StackLayout>
 

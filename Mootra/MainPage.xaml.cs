@@ -22,17 +22,6 @@ namespace Mootra
         }
 
         /// <summary>
-        /// Attempts to load a stored emotion handler.
-        /// </summary>
-        /// <param name="fileName">The path to the saved instance.</param>
-        /// <returns>True if it was loaded, false if it wasn't.</returns>
-        private bool LoadEmotionHandler(string fileName)
-        {
-            // Placeholder until serialization is implemented.
-            return false;
-        }
-
-        /// <summary>
         /// Clears all input fields.
         /// </summary>
         private void ClearInput()
@@ -51,17 +40,14 @@ namespace Mootra
         }
 
         /// <summary>
-        /// Loads resources as the page appears.
+        /// 
         /// </summary>
         /// <param name="sender">The object that initiated the event.</param>
         /// <param name="e">The event arguments for the event.</param>
-        private void moodMainMenu_Appearing(object sender, System.EventArgs e)
+        private void moodMainMenu_Appearing(object sender, EventArgs e)
         {
-            if (!this.LoadEmotionHandler(string.Empty))
-            {
-                this.emotionHandler = new EmotionHandler();
-                this.moodPicker.ItemsSource = emotionHandler.Emotions;
-            }
+            this.emotionHandler = new EmotionHandler();
+            this.moodPicker.ItemsSource = emotionHandler.Emotions;
         }
 
         /// <summary>
@@ -91,10 +77,15 @@ namespace Mootra
         /// <param name="e">The event arguments for the event.</param>
         private void moodSubmitButton_Clicked(object sender, System.EventArgs e)
         {
-            if (this.emotionHandler.CurrentEmotionName != null)
+            if (this.emotionHandler.CurrentEmotion != null)
             {
-                this.emotionHandler.AddEmotion(new Emotion(this.emotionHandler.CurrentEmotionName));
-                // Add emotion stats to application (datetime, mood).
+                this.emotionHandler.AddEmotion(this.emotionHandler.CurrentEmotion);
+
+                this.moodCalendar.Children.Add(new Button()
+                {
+                    Text = $"{this.emotionHandler.CurrentEmotion.Name} - {this.emotionHandler.CurrentEmotion.DateCreated}",
+                    CornerRadius = 16
+                });
 
                 this.RefreshEmotionSource();
             }
@@ -115,7 +106,7 @@ namespace Mootra
         {
             if (this.moodPicker.SelectedItem != null)
             {
-                this.emotionHandler.CurrentEmotionName = this.moodPicker.SelectedItem.ToString();
+                this.emotionHandler.CurrentEmotion = new Emotion(this.moodPicker.SelectedItem.ToString());
             }
         }
 
@@ -128,7 +119,7 @@ namespace Mootra
         {
             if (this.moodEditor.Text != null || this.moodEditor.Text != string.Empty)
             {
-                this.emotionHandler.CurrentEmotionName = this.moodEditor.Text;
+                this.emotionHandler.CurrentEmotion = new Emotion(this.moodEditor.Text);
             }
         }
     }
