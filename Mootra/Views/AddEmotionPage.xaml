@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Name="moodMainMenu"
-             xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Mootra.MainPage"
-             Appearing="moodMainMenu_Appearing">
+             xmlns:viewmodels="clr-namespace:Mootra"
+             x:Class="Mootra.AddEmotionPage">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -14,22 +13,21 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <ContentPage.BindingContext>
+        <viewmodels:AddEmotionViewModel/>
+    </ContentPage.BindingContext>
+    
     <StackLayout>
         <Grid ColumnDefinitions="3" BackgroundColor="{DynamicResource PrimaryColor}" Padding="8">
             <Label Grid.Column="1" Text="Mootra" TextColor="{DynamicResource TextColor}" FontSize="24" FontAttributes="Bold" VerticalTextAlignment="Center"/>
-            <Button Grid.Column="3" x:Name="settingsButton" Text="Settings" BackgroundColor="#00cee5" CornerRadius="16" Clicked="settingsButton_Clicked"/>
+            <Button Grid.Column="3" Text="Settings" BackgroundColor="#00cee5" CornerRadius="16"/>
         </Grid>
         <StackLayout Padding="30,10,30,10">
             <Label Text="Right now I feel..." TextColor="{DynamicResource TextColor}" FontSize="32"/>
-            <Picker x:Name="moodPicker" Title="Select..." PropertyChanged="moodPicker_PropertyChanged"/>
+            <Picker ItemsSource="{Binding Emotions}" SelectedItem="{Binding Text, Mode=TwoWay}" Title="Select..."/>
             <Label Text="Or add a new one..." TextColor="{DynamicResource TextColor}" FontSize="24"/>
-            <Editor x:Name="moodEditor" Unfocused="moodEditor_Unfocused"/>
-            <Grid ColumnDefinitions="2">
-                <Button Grid.Column="1" x:Name="moodClearButton" Text="Clear" CornerRadius="16" Clicked="moodClearButton_Clicked"/>
-                <Button Grid.Column="2" x:Name="moodSubmitButton" Text="Submit" BackgroundColor="{DynamicResource SecondaryColor}" CornerRadius="16" Clicked="moodSubmitButton_Clicked"/>
-            </Grid>
-            <StackLayout x:Name="moodCalendar">
-            </StackLayout>
+            <Entry Text="{Binding Text}" FontSize="Medium" />
+            <Button Grid.Column="2" Command="{Binding SubmitMood}" Text="Submit" BackgroundColor="{DynamicResource SecondaryColor}" CornerRadius="16"/>
         </StackLayout>
     </StackLayout>
 

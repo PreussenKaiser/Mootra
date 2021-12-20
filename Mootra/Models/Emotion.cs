@@ -33,7 +33,7 @@ namespace Mootra
         /// </summary>
         public string Name
         {
-            get { return this.name; }
+            get => this.name;
         }
 
         /// <summary>
@@ -41,16 +41,7 @@ namespace Mootra
         /// </summary>
         public DateTime DateCreated
         {
-            get { return this.dateCreated; }
-        }
-
-        /// <summary>
-        /// Converts the class into a readable string format.
-        /// </summary>
-        /// <returns>The name of the emotion.</returns>
-        public override string ToString()
-        {
-            return this.Name;
+            get => this.dateCreated;
         }
     }
 }

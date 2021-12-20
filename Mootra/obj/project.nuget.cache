@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "L0KNEQhgYCb+3P3q2JUO/J5NyuTUM3JPK5v72Qx7JJjN2/9Fiq9ZsSXXU9XwBFslpARctkhykdtJHIzfWp37AA==",
+  "dgSpecHash": "TDC62NbWLWYeZp/XjECDa9h04/cahdQ6DykBEUA3o2AmHB57qezLrK9dLSop8OeKeH5jgNEreaM0eQ1HN+Aljw==",
   "success": true,
   "projectFilePath": "C:\\Users\\kluka\\projects\\c#\\Mootra\\Mootra\\Mootra.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kluka\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\kluka\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\kluka\\.nuget\\packages\\refractored.mvvmhelpers\\1.6.2\\refractored.mvvmhelpers.1.6.2.nupkg.sha512",
     "C:\\Users\\kluka\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\kluka\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.6.1\\xamarin.essentials.1.6.1.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.forms\\5.0.0.2012\\xamarin.forms.5.0.0.2012.nupkg.sha512"
   ],

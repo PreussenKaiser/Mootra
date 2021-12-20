@@ -16,7 +16,7 @@ namespace Mootra
         {
             this.InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new AddEmotionPage();
         }
     }
 }

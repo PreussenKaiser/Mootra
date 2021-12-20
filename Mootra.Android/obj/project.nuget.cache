@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "v2/FIIOwYVtwJm+lUdNT+NhZ1C3XZjmn2h0gcuxWsleYwObv6DYbgbXj4Amj2Hxq8Hq4jhVWDUZqtYJ2NC8ZbQ==",
+  "dgSpecHash": "RdqmsiV45QH4h+3yM+eh4/TDGqmI8hb4x0j7WOZ4TR65kM9/tcVl08HXO1Gcw+rz052FnIcsvWpKkTyo+6VJqA==",
   "success": true,
   "projectFilePath": "C:\\Users\\kluka\\projects\\c#\\Mootra\\Mootra.Android\\Mootra.Android.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\kluka\\.nuget\\packages\\refractored.mvvmhelpers\\1.6.2\\refractored.mvvmhelpers.1.6.2.nupkg.sha512",
     "C:\\Users\\kluka\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\kluka\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.androidx.activity\\1.1.0.5\\xamarin.androidx.activity.1.1.0.5.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.androidx.annotation\\1.1.0.8\\xamarin.androidx.annotation.1.1.0.8.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.androidx.annotation.experimental\\1.0.0.8\\xamarin.androidx.annotation.experimental.1.0.0.8.nupkg.sha512",
