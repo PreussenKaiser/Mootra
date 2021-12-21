@@ -8,7 +8,7 @@ namespace Mootra
     public partial class AddEmotionPage : ContentPage
     {
         /// <summary>
-        /// Initializes a new instance of the MainPage class.
+        /// Initializes a new instance of the AddEmotionPage class.
         /// </summary>
         public AddEmotionPage()
         {

@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:Mootra"
-             x:Class="Mootra.AddEmotionPage">
+             x:Class="Mootra.AddEmotionPage"
+             Title="{Binding Title}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -13,18 +14,10 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.BindingContext>
-        <viewmodels:AddEmotionViewModel/>
-    </ContentPage.BindingContext>
-    
     <StackLayout>
-        <Grid ColumnDefinitions="3" BackgroundColor="{DynamicResource PrimaryColor}" Padding="8">
-            <Label Grid.Column="1" Text="Mootra" TextColor="{DynamicResource TextColor}" FontSize="24" FontAttributes="Bold" VerticalTextAlignment="Center"/>
-            <Button Grid.Column="3" Text="Settings" BackgroundColor="#00cee5" CornerRadius="16"/>
-        </Grid>
         <StackLayout Padding="30,10,30,10">
             <Label Text="Right now I feel..." TextColor="{DynamicResource TextColor}" FontSize="32"/>
-            <Picker ItemsSource="{Binding Emotions}" SelectedItem="{Binding Text, Mode=TwoWay}" Title="Select..."/>
+            <Picker ItemsSource="{Binding EmotionTypes}" SelectedItem="{Binding Text, Mode=TwoWay}" Title="Select..."/>
             <Label Text="Or add a new one..." TextColor="{DynamicResource TextColor}" FontSize="24"/>
             <Entry Text="{Binding Text}" FontSize="Medium" />
             <Button Grid.Column="2" Command="{Binding SubmitMood}" Text="Submit" BackgroundColor="{DynamicResource SecondaryColor}" CornerRadius="16"/>

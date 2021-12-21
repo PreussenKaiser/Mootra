@@ -4,6 +4,13 @@ Mootra.Android/obj/Debug
 Mootra/bin/Debug
 Mootra/obj/Debug
 
+# Stylecop
+Settings.StyleCop
+Mootra/Settings.StyleCop
+Mootra/StyleCop.Cache
+Mootra.Android/Settings.StyleCop
+Mootra.Android/StyleCop.Cache
+
 # Windows
 Thumbs.db
 

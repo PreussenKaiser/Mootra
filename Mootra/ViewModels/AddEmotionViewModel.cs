@@ -1,14 +1,17 @@
-﻿using MvvmHelpers;
-using MvvmHelpers.Commands;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
+using MvvmHelpers;
+using MvvmHelpers.Commands;
 
 namespace Mootra
 {
+    /// <summary>
+    /// The class which contains business logic for the add emotion page.
+    /// </summary>
     public class AddEmotionViewModel : BaseViewModel
     {
         /// <summary>
-        /// Text in a text input.
+        /// The text in a text input.
         /// </summary>
         private string text;
 
@@ -18,11 +21,19 @@ namespace Mootra
         private ObservableCollection<Emotion> emotions;
 
         /// <summary>
-        /// Initializes a new instance of the MainPageViewModel class.
+        /// Contains an observable list of emotions.
+        /// </summary>
+        private ObservableCollection<string> emotionTypes;
+
+        /// <summary>
+        /// Initializes a new instance of the AddEmotionViewModel class.
         /// </summary>
         public AddEmotionViewModel()
         {
+            this.Title = "Mootra";
+
             this.emotions = new ObservableCollection<Emotion>();
+            this.emotionTypes = new ObservableCollection<string>();
 
             this.SubmitMood = new Command(this.OnSubmit);
         }
@@ -37,7 +48,7 @@ namespace Mootra
         }
 
         /// <summary>
-        /// Gets an observable list of emotions.
+        /// Gets or sets an observable list of emotions.
         /// </summary>
         public ObservableCollection<Emotion> Emotions
         {
@@ -46,7 +57,16 @@ namespace Mootra
         }
 
         /// <summary>
-        /// Gets or sets the command to submit current mood.
+        /// Gets or sets an observable list of emotion types.
+        /// </summary>
+        public ObservableCollection<string> EmotionTypes
+        {
+            get => this.emotionTypes;
+            set => this.SetProperty(ref this.emotionTypes, value);
+        }
+
+        /// <summary>
+        /// Gets the command to submit current mood.
         /// </summary>
         public ICommand SubmitMood { get; }
 
@@ -58,6 +78,14 @@ namespace Mootra
             if (!string.IsNullOrWhiteSpace(this.text))
             {
                 this.Emotions.Add(new Emotion(this.text));
+                
+                // Adds to emotion types if its a new emotion.
+                if (!this.emotionTypes.Contains(this.text))
+                {
+                    this.EmotionTypes.Add(this.text);
+                }
+
+                // Resets text input.
                 this.Text = string.Empty;
             }
             else
