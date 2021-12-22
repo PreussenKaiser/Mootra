@@ -1,7 +1,40 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:Mootra"
+             xmlns:models="clr-namespace:Mootra"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="Mootra.BrowseEmotionsPage"
              Title="{Binding Title}">
-			 
+
+    <ContentPage.BindingContext>
+        <viewmodels:BrowseEmotionsViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Behaviors>
+        <xct:EventToCommandBehavior EventName="Appearing" Command="{Binding OnRefresh}"/>
+    </ContentPage.Behaviors>
+
+    <CollectionView ItemsSource="{Binding Emotions}" ItemsLayout="VerticalGrid, 2">
+        <CollectionView.Header>
+            <Grid ColumnDefinitions="2" Padding="10">
+                <Button Grid.Column="1" Text="Delete" Command="{Binding OnRemove}" CornerRadius="16"/>
+                <Button Grid.Column="2" Text="Refresh" Command="{Binding OnRefresh}" BackgroundColor="#00cee5" CornerRadius="16"/>
+            </Grid>
+        </CollectionView.Header>
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="models:Emotion">
+                <StackLayout Padding="10">
+                    <Frame BackgroundColor="Pink" CornerRadius="16">
+                        <StackLayout>
+                            <Label Text="{Binding Name}" FontSize="Medium"/>
+                            <Label Text="{Binding DateCreated}"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
 </ContentPage>

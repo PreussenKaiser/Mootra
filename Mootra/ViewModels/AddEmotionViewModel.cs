@@ -1,7 +1,9 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Input;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
+using Xamarin.Forms;
 
 namespace Mootra
 {
@@ -16,14 +18,9 @@ namespace Mootra
         private string text;
 
         /// <summary>
-        /// Contains an observable list of emotions.
+        /// Contains an enumerable list of emotions.
         /// </summary>
-        private ObservableCollection<Emotion> emotions;
-
-        /// <summary>
-        /// Contains an observable list of emotions.
-        /// </summary>
-        private ObservableCollection<string> emotionTypes;
+        private IEnumerable<string> emotionNames;
 
         /// <summary>
         /// Initializes a new instance of the AddEmotionViewModel class.
@@ -32,10 +29,10 @@ namespace Mootra
         {
             this.Title = "Mootra";
 
-            this.emotions = new ObservableCollection<Emotion>();
-            this.emotionTypes = new ObservableCollection<string>();
+            this.emotionNames = new List<string>();
 
-            this.SubmitMood = new Command(this.OnSubmit);
+            this.OnSubmit = new AsyncCommand(this.Submit);
+            this.OnRefresh = new AsyncCommand(this.Refresh);
         }
 
         /// <summary>
@@ -48,50 +45,67 @@ namespace Mootra
         }
 
         /// <summary>
-        /// Gets or sets an observable list of emotions.
+        /// Gets or sets an enumerable list of emotion names.
         /// </summary>
-        public ObservableCollection<Emotion> Emotions
+        public IEnumerable<string> EmotionNames
         {
-            get => this.emotions;
-            set => this.SetProperty(ref this.emotions, value);
-        }
+            get => this.emotionNames;
 
-        /// <summary>
-        /// Gets or sets an observable list of emotion types.
-        /// </summary>
-        public ObservableCollection<string> EmotionTypes
-        {
-            get => this.emotionTypes;
-            set => this.SetProperty(ref this.emotionTypes, value);
+            set
+            {
+                this.emotionNames = value;
+                this.OnPropertyChanged(nameof(this.EmotionNames));
+            }
         }
 
         /// <summary>
         /// Gets the command to submit current mood.
         /// </summary>
-        public ICommand SubmitMood { get; }
+        public AsyncCommand OnSubmit { get; }
+
+        /// <summary>
+        /// Gets the action to take on refresh.
+        /// </summary>
+        public AsyncCommand OnRefresh { get; }
 
         /// <summary>
         /// Submits the current mood.
         /// </summary>
-        private void OnSubmit()
+        /// <returns>Not implemented.</returns>
+        private async Task Submit()
         {
             if (!string.IsNullOrWhiteSpace(this.text))
             {
-                this.Emotions.Add(new Emotion(this.text));
-                
-                // Adds to emotion types if its a new emotion.
-                if (!this.emotionTypes.Contains(this.text))
-                {
-                    this.EmotionTypes.Add(this.text);
-                }
+                await this.AddEmotion(this.text);
 
                 // Resets text input.
                 this.Text = string.Empty;
             }
             else
             {
-                // Show pop up saying no emotion was selected.
+                await Application.Current.MainPage.DisplayAlert("Could not submit", "Nothing was entered.", "OK");
             }
+        }
+
+        /// <summary>
+        /// Refreshes the emotion names list.
+        /// </summary>
+        /// <returns>Not implemented.</returns>
+        private async Task Refresh()
+        {
+            var emotions = await EmotionService.GetEmotions();
+            this.EmotionNames = emotions.GroupBy(e => e.Name).Select(g => g.Key).ToList();
+        }
+
+        /// <summary>
+        /// Adds an emotion to the list of emotions.
+        /// </summary>
+        /// <param name="name">The name of the emotion.</param>
+        /// <returns>Not implemented.</returns>
+        private async Task AddEmotion(string name)
+        {
+            await EmotionService.AddEmotion(name);
+            await this.Refresh();
         }
     }
 }

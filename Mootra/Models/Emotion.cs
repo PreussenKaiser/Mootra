@@ -1,47 +1,27 @@
 ﻿using System;
+using SQLite;
 
 namespace Mootra
 {
     /// <summary>
     /// The class that represents an emotion.
     /// </summary>
-    [Serializable]
     public class Emotion
     {
         /// <summary>
-        /// The emotion name (angry, sad).
+        /// Gets or sets the Id of the emotion.
         /// </summary>
-        private string name;
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
 
         /// <summary>
-        /// The time of creation.
+        /// Gets or sets the emotion name.
         /// </summary>
-        private DateTime dateCreated;
+        public string Name { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the Emotion class.
+        /// Gets or sets the date of creation.
         /// </summary>
-        /// <param name="name">The emotion name (angry, sad).</param>
-        public Emotion(string name)
-        {
-            this.name = name;
-            this.dateCreated = DateTime.Now;
-        }
-
-        /// <summary>
-        /// Gets the emotion name.
-        /// </summary>
-        public string Name
-        {
-            get => this.name;
-        }
-
-        /// <summary>
-        /// Gets the date of creation.
-        /// </summary>
-        public DateTime DateCreated
-        {
-            get => this.dateCreated;
-        }
+        public DateTime DateCreated { get; set; }
     }
 }

@@ -10,6 +10,7 @@ namespace Mootra
         /// <summary>
         /// Initializes a new instance of the AppShell class.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.StyleCop.CSharp.ReadabilityRules", "SA1126:PrefixCallsCorrectly", Justification = "Cannot implement suggested prefixes.")]
         public AppShell()
         {
             this.InitializeComponent();
