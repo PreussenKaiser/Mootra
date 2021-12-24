@@ -23,7 +23,7 @@ namespace Mootra
         /// <returns>Not implemented.</returns>
         public static async Task Init()
         {
-            if (db == null)
+            if (db is null)
             {
                 // Get an absolute path to the database file.
                 var databasePath = Path.Combine(FileSystem.AppDataDirectory, "MootraData.db");

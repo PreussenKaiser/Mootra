@@ -7,12 +7,12 @@
     <Shell.Resources>
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
-                <Setter Property="Shell.BackgroundColor" Value="#00cee5"/>
+                <Setter Property="Shell.BackgroundColor" Value="#0091ea"/>
                 <Setter Property="Shell.ForegroundColor" Value="White"/>
-                <Setter Property="Shell.TitleColor" Value="Black"/>
+                <Setter Property="Shell.TitleColor" Value="White"/>
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
                 <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
-                <Setter Property="Shell.TabBarBackgroundColor" Value="#00cee5" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="#0091ea" />
                 <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
                 <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF"/>
                 <Setter Property="Shell.TabBarTitleColor" Value="White"/>
@@ -23,8 +23,8 @@
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="Add" Icon="icon_about.png" ContentTemplate="{DataTemplate local:AddEmotionPage}" Route="AddEmotionPage"/>
-        <ShellContent Title="Browse" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:BrowseEmotionsPage}" Route="BrowseEmotionsPage"/>
+        <ShellContent Title="Add" Icon="icon_add.png" ContentTemplate="{DataTemplate local:AddEmotionPage}" Route="AddEmotionPage"/>
+        <ShellContent Title="Browse" Icon="icon_calendar.png" ContentTemplate="{DataTemplate local:BrowseEmotionsPage}" Route="BrowseEmotionsPage"/>
     </TabBar>
 
 </Shell>

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
 using Xamarin.Forms;
@@ -18,6 +19,11 @@ namespace Mootra
         private IEnumerable<Emotion> emotions;
 
         /// <summary>
+        /// The current selected emotion.
+        /// </summary>
+        private Emotion selectedEmotion;
+
+        /// <summary>
         /// Initializes a new instance of the BrowseEmotionsViewModel class.
         /// </summary>
         public BrowseEmotionsViewModel()
@@ -26,19 +32,33 @@ namespace Mootra
 
             this.emotions = new List<Emotion>();
 
-            this.OnRefresh = new AsyncCommand(this.Refresh);
-            this.OnRemove = new AsyncCommand(this.Remove);
+            this.Refresh = new AsyncCommand(this.OnRefresh);
+            this.Remove = new AsyncCommand(this.OnRemove);
         }
 
         /// <summary>
         /// Gets the action to take on refresh.
         /// </summary>
-        public AsyncCommand OnRefresh { get; }
+        public AsyncCommand Refresh { get; }
 
         /// <summary>
         /// Gets the action to take on remove.
         /// </summary>
-        public AsyncCommand OnRemove { get; }
+        public AsyncCommand Remove { get; }
+
+        /// <summary>
+        /// Gets or sets the current selected emotion.
+        /// </summary>
+        public Emotion SelectedEmotion
+        {
+            get => this.selectedEmotion;
+
+            set
+            {
+                this.selectedEmotion = value;
+                this.OnPropertyChanged();
+            }
+        }
 
         /// <summary>
         /// Gets or sets an observable list of emotions.
@@ -50,7 +70,7 @@ namespace Mootra
             set
             {
                 this.emotions = value;
-                this.OnPropertyChanged(nameof(this.Emotions));
+                this.OnPropertyChanged();
             }
         }
 
@@ -58,26 +78,30 @@ namespace Mootra
         /// Refreshes the emotions list.
         /// </summary>
         /// <returns>Not implemented.</returns>
-        private async Task Refresh()
+        private async Task OnRefresh()
         {
+            this.IsBusy = true;
+
             this.Emotions.ToList().Clear();
             this.Emotions = await EmotionService.GetEmotions();
+
+            this.IsBusy = false;
         }
 
         /// <summary>
         /// Removes the first emotion in the emotions list.
         /// </summary>
         /// <returns>Not implemented.</returns>
-        private async Task Remove()
+        private async Task OnRemove()
         {
-            if (this.Emotions.Count() > 0)
+            if (this.selectedEmotion is null)
             {
-                await EmotionService.RemoveEmotion(this.Emotions.First().Id);
-                await this.Refresh();
+                await Application.Current.MainPage.DisplayAlert("Could not remove an item", "No item was selected.", "OK");
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Could not remove an item", "There are no items to remove.", "Ok");
+                await EmotionService.RemoveEmotion(this.selectedEmotion.Id);
+                await this.OnRefresh();
             }
         }
     }

@@ -14,9 +14,9 @@ namespace Mootra
         public AppShell()
         {
             this.InitializeComponent();
-
             Routing.RegisterRoute(nameof(AddEmotionPage), typeof(AddEmotionPage));
             Routing.RegisterRoute(nameof(BrowseEmotionsPage), typeof(BrowseEmotionsPage));
+            Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
         }
     }
 }

@@ -2,7 +2,28 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Mootra.App">
+    
     <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="primaryColor">#0091ea</Color>
+            <Color x:Key="secondaryColor">#99ccff</Color>
+            <Color x:Key="textColor">Black</Color>
 
+            <Style x:Key="primaryButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#03a9f4"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="CornerRadius" Value="16"/>
+            </Style>
+
+            <Style x:Key="primaryFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{DynamicResource secondaryColor}"/>
+                <Setter Property="CornerRadius" Value="16"/>
+            </Style>
+
+            <Style x:Key="headerPadding" TargetType="StackLayout">
+                <Setter Property="Padding" Value="30,10,30,10"/>
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
+    
 </Application>

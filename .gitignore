@@ -11,8 +11,5 @@ Mootra/StyleCop.Cache
 Mootra.Android/Settings.StyleCop
 Mootra.Android/StyleCop.Cache
 
-# Windows
-Thumbs.db
-
 # MacOS
 .DS_Store

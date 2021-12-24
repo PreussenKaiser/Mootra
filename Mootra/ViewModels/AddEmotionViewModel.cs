@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MvvmHelpers;
@@ -10,6 +11,7 @@ namespace Mootra
     /// <summary>
     /// The class which contains business logic for the add emotion page.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.StyleCop.CSharp.ReadabilityRules", "SA1126:PrefixCallsCorrectly", Justification = "Cannot implement suggested prefixes.")]
     public class AddEmotionViewModel : BaseViewModel
     {
         /// <summary>
@@ -31,8 +33,9 @@ namespace Mootra
 
             this.emotionNames = new List<string>();
 
-            this.OnSubmit = new AsyncCommand(this.Submit);
-            this.OnRefresh = new AsyncCommand(this.Refresh);
+            this.Submit = new AsyncCommand(this.OnSubmit);
+            this.Refresh = new AsyncCommand(this.OnRefresh);
+            this.GoToSettings = new AsyncCommand(this.OnGoToSettings);
         }
 
         /// <summary>
@@ -54,25 +57,30 @@ namespace Mootra
             set
             {
                 this.emotionNames = value;
-                this.OnPropertyChanged(nameof(this.EmotionNames));
+                this.OnPropertyChanged();
             }
         }
 
         /// <summary>
         /// Gets the command to submit current mood.
         /// </summary>
-        public AsyncCommand OnSubmit { get; }
+        public AsyncCommand Submit { get; }
 
         /// <summary>
         /// Gets the action to take on refresh.
         /// </summary>
-        public AsyncCommand OnRefresh { get; }
+        public AsyncCommand Refresh { get; }
+
+        /// <summary>
+        /// Gets the action to take to go to the settings page.
+        /// </summary>
+        public AsyncCommand GoToSettings { get; }
 
         /// <summary>
         /// Submits the current mood.
         /// </summary>
         /// <returns>Not implemented.</returns>
-        private async Task Submit()
+        private async Task OnSubmit()
         {
             if (!string.IsNullOrWhiteSpace(this.text))
             {
@@ -91,10 +99,14 @@ namespace Mootra
         /// Refreshes the emotion names list.
         /// </summary>
         /// <returns>Not implemented.</returns>
-        private async Task Refresh()
+        private async Task OnRefresh()
         {
-            var emotions = await EmotionService.GetEmotions();
+            this.IsBusy = true;
+
+            IEnumerable<Emotion> emotions = await EmotionService.GetEmotions();
             this.EmotionNames = emotions.GroupBy(e => e.Name).Select(g => g.Key).ToList();
+
+            this.IsBusy = false;
         }
 
         /// <summary>
@@ -105,7 +117,16 @@ namespace Mootra
         private async Task AddEmotion(string name)
         {
             await EmotionService.AddEmotion(name);
-            await this.Refresh();
+            await this.OnRefresh();
+        }
+
+        /// <summary>
+        /// Goes to the settings page.
+        /// </summary>
+        /// <returns>Not implemented.</returns>
+        private async Task OnGoToSettings()
+        {
+            await Shell.Current.GoToAsync(nameof(SettingsPage));
         }
     }
 }

@@ -12,29 +12,33 @@
     </ContentPage.BindingContext>
 
     <ContentPage.Behaviors>
-        <xct:EventToCommandBehavior EventName="Appearing" Command="{Binding OnRefresh}"/>
+        <xct:EventToCommandBehavior EventName="Appearing" Command="{Binding Refresh}"/>
     </ContentPage.Behaviors>
 
-    <CollectionView ItemsSource="{Binding Emotions}" ItemsLayout="VerticalGrid, 2">
-        <CollectionView.Header>
-            <Grid ColumnDefinitions="2" Padding="10">
-                <Button Grid.Column="1" Text="Delete" Command="{Binding OnRemove}" CornerRadius="16"/>
-                <Button Grid.Column="2" Text="Refresh" Command="{Binding OnRefresh}" BackgroundColor="#00cee5" CornerRadius="16"/>
-            </Grid>
-        </CollectionView.Header>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="icon_trash.png" Command="{Binding Remove}"/>
+    </ContentPage.ToolbarItems>
 
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="models:Emotion">
-                <StackLayout Padding="10">
-                    <Frame BackgroundColor="Pink" CornerRadius="16">
-                        <StackLayout>
-                            <Label Text="{Binding Name}" FontSize="Medium"/>
-                            <Label Text="{Binding DateCreated}"/>
-                        </StackLayout>
-                    </Frame>
-                </StackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+    <RefreshView IsRefreshing="{Binding IsBusy}" Command="{Binding Refresh}" Padding="20,10,20,10">
+        <CollectionView ItemsSource="{Binding Emotions}"
+                        ItemsLayout="VerticalGrid, 2"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding SelectedEmotion}">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Emotion">
+                    <StackLayout Padding="10">
+                        <Frame Style="{StaticResource primaryFrame}">
+                            <StackLayout>
+                                <Label Text="{Binding Name}" FontSize="Medium"/>
+                                <Label Text="{Binding DateCreated}"/>
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
+        </CollectionView>
+    </RefreshView>
 
 </ContentPage>
