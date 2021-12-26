@@ -50,12 +50,7 @@ namespace Mootra
         public Emotion SelectedEmotion
         {
             get => this.selectedEmotion;
-
-            set
-            {
-                this.selectedEmotion = value;
-                this.OnPropertyChanged();
-            }
+            set => this.SetProperty(ref this.selectedEmotion, value);
         }
 
         /// <summary>
@@ -64,12 +59,7 @@ namespace Mootra
         public IEnumerable<Emotion> Emotions
         {
             get => this.emotions;
-
-            set
-            {
-                this.emotions = value;
-                this.OnPropertyChanged();
-            }
+            set => this.SetProperty(ref this.emotions, value);
         }
 
         /// <summary>

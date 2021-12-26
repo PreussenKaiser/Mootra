@@ -1,6 +1,4 @@
 ﻿using MvvmHelpers;
-using System;
-using System.Collections;
 
 namespace Mootra
 {

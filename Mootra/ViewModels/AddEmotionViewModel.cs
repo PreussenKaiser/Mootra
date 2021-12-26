@@ -51,12 +51,7 @@ namespace Mootra
         public IEnumerable<string> EmotionNames
         {
             get => this.emotionNames;
-
-            set
-            {
-                this.emotionNames = value;
-                this.OnPropertyChanged();
-            }
+            set => this.SetProperty(ref this.emotionNames, value);
         }
 
         /// <summary>
@@ -101,6 +96,7 @@ namespace Mootra
         {
             this.IsBusy = true;
 
+            // Gets emotions then selects unique names.
             IEnumerable<Emotion> emotions = await EmotionService.GetEmotions();
             this.EmotionNames = emotions.GroupBy(e => e.Name).Select(g => g.Key).ToList();
 

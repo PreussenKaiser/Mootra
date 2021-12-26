@@ -34,7 +34,7 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Emotion">
-                    <StackLayout Padding="10,0,10,0">
+                    <StackLayout Padding="10,0,0,10">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup Name="CommonStates">
                                 <VisualState Name="Normal"/>
