@@ -15,10 +15,6 @@
         <xct:EventToCommandBehavior EventName="Appearing" Command="{Binding Refresh}"/>
     </ContentPage.Behaviors>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="icon_settings.png" Command="{Binding GoToSettings}"/>
-    </ContentPage.ToolbarItems>
-
     <StackLayout Padding="30,0,30,0">
         <StackLayout Style="{StaticResource header}">
             <Label Text="Mootra" Style="{StaticResource title}"/>

@@ -11,11 +11,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="AssemblyInfo.cs" />
+    <None Remove="Resources\Fonts\fa-regular.otf" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="AssemblyInfo.cs" />
+    <EmbeddedResource Include="Resources\Fonts\fa-regular.otf" />
   </ItemGroup>
 
   <ItemGroup>

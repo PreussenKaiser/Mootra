@@ -23,8 +23,16 @@
     </Shell.Resources>
 
     <TabBar>
-        <ShellContent Title="Add" Icon="icon_add.png" ContentTemplate="{DataTemplate local:AddEmotionPage}" Route="AddEmotionPage"/>
-        <ShellContent Title="Browse" Icon="icon_calendar.png" ContentTemplate="{DataTemplate local:BrowseEmotionsPage}" Route="BrowseEmotionsPage"/>
+        <ShellContent Title="Add" ContentTemplate="{DataTemplate local:AddEmotionPage}" Route="AddEmotionPage">
+            <ShellContent.Icon>
+                <FontImageSource Glyph="{StaticResource CalendarPlusIcon}" FontFamily="FAR"/>
+            </ShellContent.Icon>
+        </ShellContent>
+        <ShellContent Title="Browse" ContentTemplate="{DataTemplate local:BrowseEmotionsPage}" Route="BrowseEmotionsPage">
+            <ShellContent.Icon>
+                <FontImageSource Glyph="{StaticResource CalendarIcon}" FontFamily="FAR"/>
+            </ShellContent.Icon>
+        </ShellContent>
     </TabBar>
 
 </Shell>

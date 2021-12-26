@@ -17,7 +17,11 @@
     </ContentPage.Behaviors>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="icon_trash.png" Command="{Binding Remove}"/>
+        <ToolbarItem Command="{Binding Remove}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Size="Large" Glyph="{StaticResource TrashIcon}" FontFamily="FAR"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <RefreshView IsRefreshing="{Binding IsBusy}" Command="{Binding Refresh}" Padding="30,0,30,0">

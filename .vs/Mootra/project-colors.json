@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "ec54d8f2-106e-4e57-9d4e-291896723e0d": {
+      "ProjectGuid": "ec54d8f2-106e-4e57-9d4e-291896723e0d",
+      "DisplayName": "Mootra",
+      "ColorIndex": 0
+    },
+    "90751c0f-d32e-4dc4-9531-7e3ba24fe8be": {
+      "ProjectGuid": "90751c0f-d32e-4dc4-9531-7e3ba24fe8be",
+      "DisplayName": "Mootra.Android",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}

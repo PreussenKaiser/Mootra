@@ -10,25 +10,17 @@ namespace Mootra
     /// <summary>
     /// The class which contains the backend for the BrowseEmotions page.
     /// </summary>
-    public class BrowseEmotionsViewModel : BaseViewModel
+    public sealed class BrowseEmotionsViewModel : BaseViewModel
     {
-        /// <summary>
-        /// Stores an observable list of emotions.
-        /// </summary>
-        private IEnumerable<Emotion> emotions;
-
         /// <summary>
         /// The current selected emotion.
         /// </summary>
         private Emotion selectedEmotion;
 
         /// <summary>
-        /// Initializes a new instance of the BrowseEmotionsViewModel class.
+        /// Stores an observable list of emotions.
         /// </summary>
-        public BrowseEmotionsViewModel()
-        {
-            this.emotions = new List<Emotion>();
-        }
+        private IEnumerable<Emotion> emotions = new List<Emotion>();
 
         /// <summary>
         /// Gets the action to take on refresh.
@@ -61,7 +53,7 @@ namespace Mootra
         /// <summary>
         /// Refreshes the emotions list.
         /// </summary>
-        /// <returns>Not implemented.</returns>
+        /// <returns>If the task was successful or not.</returns>
         private async Task OnRefresh()
         {
             this.IsBusy = true;
@@ -75,12 +67,13 @@ namespace Mootra
         /// <summary>
         /// Removes the first emotion in the emotions list.
         /// </summary>
-        /// <returns>Not implemented.</returns>
+        /// <returns>If the task was successful or not.</returns>
         private async Task OnRemove()
         {
             if (this.selectedEmotion is null)
             {
-                await Application.Current.MainPage.DisplayAlert("Could not remove an item", "No item was selected.", "OK");
+                await Application.Current.MainPage.
+                    DisplayAlert("Could not remove an item", "No item was selected.", "OK");
             }
             else
             {

@@ -21,7 +21,7 @@ namespace Mootra
         /// Initializes the database.
         /// </summary>
         /// <returns>Not implemented.</returns>
-        public static async Task Init()
+        private static async Task Init()
         {
             if (db is null)
             {
@@ -38,7 +38,7 @@ namespace Mootra
         /// Adds an emotion to the database.
         /// </summary>
         /// <param name="name">The emotion name.</param>
-        /// <returns>Not implemented.</returns>
+        /// <returns>If the task was completed or not.</returns>
         public static async Task AddEmotion(string name)
         {
             await Init();
@@ -56,7 +56,7 @@ namespace Mootra
         /// Removes an emotion from the database.
         /// </summary>
         /// <param name="id">The of the emotion to remove.</param>
-        /// <returns>Not implemented.</returns>
+        /// <returns>If the task was completed or not.</returns>
         public static async Task RemoveEmotion(int id)
         {
             await Init();
@@ -67,7 +67,7 @@ namespace Mootra
         /// <summary>
         /// Gets an IEnumerable of emotions from the database.
         /// </summary>
-        /// <returns>The list of emotions.</returns>
+        /// <returns>If the task was completed or not.</returns>
         public static async Task<IEnumerable<Emotion>> GetEmotions()
         {
             await Init();
