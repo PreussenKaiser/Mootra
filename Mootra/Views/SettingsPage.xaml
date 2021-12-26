@@ -2,10 +2,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:Mootra"
              x:Class="Mootra.SettingsPage"
-             Title="{Binding Title}">
+             BackgroundColor="{AppThemeBinding Light={StaticResource backgroundColor},
+                                               Dark={StaticResource backgroundColorDark}}">
 
     <ContentPage.BindingContext>
         <viewmodels:SettingsViewModel/>
     </ContentPage.BindingContext>
+
+    <ScrollView>
+        <StackLayout Padding="30,0,30,0">
+            <StackLayout Style="{StaticResource header}" Padding="0,0,0,48">
+                <Label Text="Settings" Style="{StaticResource title}"/>
+            </StackLayout>
+
+            <StackLayout>
+                <Label Text="Version 1.0" FontSize="Medium"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
 
 </ContentPage>

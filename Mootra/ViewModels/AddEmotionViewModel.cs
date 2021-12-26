@@ -29,8 +29,6 @@ namespace Mootra
         /// </summary>
         public AddEmotionViewModel()
         {
-            this.Title = "Mootra";
-
             this.emotionNames = new List<string>();
 
             this.Submit = new AsyncCommand(this.OnSubmit);

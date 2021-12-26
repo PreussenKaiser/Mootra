@@ -13,8 +13,6 @@ namespace Mootra
         public SettingsPage()
         {
             this.InitializeComponent();
-
-            this.BindingContext = new SettingsViewModel();
         }
     }
 }

@@ -28,8 +28,6 @@ namespace Mootra
         /// </summary>
         public BrowseEmotionsViewModel()
         {
-            this.Title = "Mootra";
-
             this.emotions = new List<Emotion>();
 
             this.Refresh = new AsyncCommand(this.OnRefresh);

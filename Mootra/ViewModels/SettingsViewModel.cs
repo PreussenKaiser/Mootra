@@ -1,4 +1,6 @@
 ﻿using MvvmHelpers;
+using System;
+using System.Collections;
 
 namespace Mootra
 {
@@ -12,7 +14,6 @@ namespace Mootra
         /// </summary>
         public SettingsViewModel()
         {
-            this.Title = "Settings";
         }
     }
 }

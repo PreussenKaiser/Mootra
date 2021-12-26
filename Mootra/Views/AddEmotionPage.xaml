@@ -5,7 +5,8 @@
              xmlns:models="clr-namespace:Mootra"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="Mootra.AddEmotionPage"
-             Title="{Binding Title}">
+             BackgroundColor="{AppThemeBinding Light={StaticResource backgroundColor},
+                                               Dark={StaticResource backgroundColorDark}}">
 
     <ContentPage.BindingContext>
         <viewmodels:AddEmotionViewModel/>
@@ -19,16 +20,16 @@
         <ToolbarItem IconImageSource="icon_settings.png" Command="{Binding GoToSettings}"/>
     </ContentPage.ToolbarItems>
 
-    <StackLayout Style="{StaticResource headerPadding}">
-        <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="Center" Padding="0,30,0,0">
-            <Label Text="Mootra" TextColor="{DynamicResource textColor}" FontAttributes="Bold" FontSize="48"/>
+    <StackLayout Padding="30,0,30,0">
+        <StackLayout Style="{StaticResource header}">
+            <Label Text="Mootra" Style="{StaticResource title}"/>
         </StackLayout>
         
         <StackLayout VerticalOptions="CenterAndExpand">
-            <Label Text="Right now I feel..." TextColor="{DynamicResource textColor}" FontSize="32"/>
+            <Label Text="Right now I feel..." FontSize="32"/>
             <Picker FontSize="Medium" ItemsSource="{Binding EmotionNames}" SelectedItem="{Binding Text}" Title="Select..."/>
-            <Label Text="Or add a new one..." TextColor="{DynamicResource textColor}" FontSize="24"/>
-            <Entry Text="{Binding Text}" FontSize="Medium" />            
+            <Label Text="Or add a new one..." FontSize="24"/>
+            <Entry Text="{Binding Text}" FontSize="Medium" />
         </StackLayout>
 
         <StackLayout VerticalOptions="EndAndExpand" Padding="0,0,0,20">

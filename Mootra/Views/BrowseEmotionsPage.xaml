@@ -5,7 +5,8 @@
              xmlns:models="clr-namespace:Mootra"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="Mootra.BrowseEmotionsPage"
-             Title="{Binding Title}">
+             BackgroundColor="{AppThemeBinding Light={StaticResource backgroundColor},
+                                               Dark={StaticResource backgroundColorDark}}">
 
     <ContentPage.BindingContext>
         <viewmodels:BrowseEmotionsViewModel/>
@@ -25,10 +26,27 @@
                         SelectionMode="Single"
                         SelectedItem="{Binding SelectedEmotion}">
 
+            <CollectionView.Header>
+                <StackLayout Style="{StaticResource headerPadding}" Margin="0,0,0,48">
+                    <Label Text="Calendar" Style="{StaticResource title}"/>
+                </StackLayout>
+            </CollectionView.Header>
+
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Emotion">
                     <StackLayout Padding="10">
-                        <Frame Style="{StaticResource primaryFrame}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal"/>
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="Transparent"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Frame Style="{StaticResource calendarItem}">
                             <StackLayout>
                                 <Label Text="{Binding Name}" FontSize="Medium"/>
                                 <Label Text="{Binding DateCreated}"/>
