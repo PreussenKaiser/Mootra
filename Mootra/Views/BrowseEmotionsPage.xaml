@@ -20,21 +20,21 @@
         <ToolbarItem IconImageSource="icon_trash.png" Command="{Binding Remove}"/>
     </ContentPage.ToolbarItems>
 
-    <RefreshView IsRefreshing="{Binding IsBusy}" Command="{Binding Refresh}" Padding="20,10,20,10">
+    <RefreshView IsRefreshing="{Binding IsBusy}" Command="{Binding Refresh}" Padding="30,0,30,0">
         <CollectionView ItemsSource="{Binding Emotions}"
                         ItemsLayout="VerticalGrid, 2"
                         SelectionMode="Single"
                         SelectedItem="{Binding SelectedEmotion}">
 
             <CollectionView.Header>
-                <StackLayout Style="{StaticResource headerPadding}" Margin="0,0,0,48">
+                <StackLayout Style="{StaticResource header}" Margin="0,0,0,48">
                     <Label Text="Calendar" Style="{StaticResource title}"/>
                 </StackLayout>
             </CollectionView.Header>
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Emotion">
-                    <StackLayout Padding="10">
+                    <StackLayout Padding="10,0,10,0">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup Name="CommonStates">
                                 <VisualState Name="Normal"/>

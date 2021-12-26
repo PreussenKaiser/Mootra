@@ -11,7 +11,7 @@
 
     <ScrollView>
         <StackLayout Padding="30,0,30,0">
-            <StackLayout Style="{StaticResource header}" Padding="0,0,0,48">
+            <StackLayout Style="{StaticResource header}" Margin="0,0,0,48">
                 <Label Text="Settings" Style="{StaticResource title}"/>
             </StackLayout>
 
