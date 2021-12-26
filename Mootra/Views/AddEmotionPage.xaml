@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:Mootra"
-             xmlns:models="clr-namespace:Mootra"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="Mootra.AddEmotionPage"
              BackgroundColor="{AppThemeBinding Light={StaticResource backgroundColor},
@@ -20,23 +19,21 @@
         <ToolbarItem IconImageSource="icon_settings.png" Command="{Binding GoToSettings}"/>
     </ContentPage.ToolbarItems>
 
-    <RefreshView IsRefreshing="{Binding IsBusy}" Command="{Binding Refresh}">
-        <StackLayout Padding="30,0,30,0">
-            <StackLayout Style="{StaticResource header}">
-                <Label Text="Mootra" Style="{StaticResource title}"/>
-            </StackLayout>
-        
-            <StackLayout VerticalOptions="CenterAndExpand">
-                <Label Text="Right now I feel..." FontSize="32"/>
-                <Picker FontSize="Medium" ItemsSource="{Binding EmotionNames}" SelectedItem="{Binding Text}" Title="Select..."/>
-                <Label Text="Or add a new one..." FontSize="24"/>
-                <Entry Text="{Binding Text}" FontSize="Medium" />
-            </StackLayout>
+    <StackLayout Padding="30,0,30,0">
+        <StackLayout Style="{StaticResource header}">
+            <Label Text="Mootra" Style="{StaticResource title}"/>
+        </StackLayout>
 
-            <StackLayout VerticalOptions="EndAndExpand" Padding="0,0,0,20">
-                <Button Command="{Binding Submit}" Text="Submit" Style="{DynamicResource primaryButton}"/>
-            </StackLayout>
-        </StackLayout>        
-    </RefreshView>
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <Label Text="Right now I feel..." FontSize="32"/>
+            <Picker FontSize="Medium" ItemsSource="{Binding EmotionNames}" SelectedItem="{Binding Text}" Title="Select..."/>
+            <Label Text="Or add a new one..." FontSize="24"/>
+            <Entry Text="{Binding Text}" FontSize="Medium" />
+        </StackLayout>
+
+        <StackLayout VerticalOptions="EndAndExpand" Padding="0,0,0,20">
+            <Button Command="{Binding Submit}" Text="Submit" Style="{DynamicResource primaryButton}"/>
+        </StackLayout>
+    </StackLayout>
 
 </ContentPage>

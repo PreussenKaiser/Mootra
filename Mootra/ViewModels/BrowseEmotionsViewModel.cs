@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
 using Xamarin.Forms;
@@ -29,20 +28,17 @@ namespace Mootra
         public BrowseEmotionsViewModel()
         {
             this.emotions = new List<Emotion>();
-
-            this.Refresh = new AsyncCommand(this.OnRefresh);
-            this.Remove = new AsyncCommand(this.OnRemove);
         }
 
         /// <summary>
         /// Gets the action to take on refresh.
         /// </summary>
-        public AsyncCommand Refresh { get; }
+        public AsyncCommand Refresh => new AsyncCommand(this.OnRefresh);
 
         /// <summary>
         /// Gets the action to take on remove.
         /// </summary>
-        public AsyncCommand Remove { get; }
+        public AsyncCommand Remove => new AsyncCommand(this.OnRemove);
 
         /// <summary>
         /// Gets or sets the current selected emotion.

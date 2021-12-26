@@ -30,11 +30,22 @@ namespace Mootra
         public AddEmotionViewModel()
         {
             this.emotionNames = new List<string>();
-
-            this.Submit = new AsyncCommand(this.OnSubmit);
-            this.Refresh = new AsyncCommand(this.OnRefresh);
-            this.GoToSettings = new AsyncCommand(this.OnGoToSettings);
         }
+
+        /// <summary>
+        /// Gets the command to submit current mood.
+        /// </summary>
+        public AsyncCommand Submit => new AsyncCommand(this.OnSubmit);
+
+        /// <summary>
+        /// Gets the action to take on refresh.
+        /// </summary>
+        public AsyncCommand Refresh => new AsyncCommand(this.OnRefresh);
+
+        /// <summary>
+        /// Gets the action to take to go to the settings page.
+        /// </summary>
+        public AsyncCommand GoToSettings => new AsyncCommand(this.OnGoToSettings);
 
         /// <summary>
         /// Gets or sets the text in a text input.
@@ -53,21 +64,6 @@ namespace Mootra
             get => this.emotionNames;
             set => this.SetProperty(ref this.emotionNames, value);
         }
-
-        /// <summary>
-        /// Gets the command to submit current mood.
-        /// </summary>
-        public AsyncCommand Submit { get; }
-
-        /// <summary>
-        /// Gets the action to take on refresh.
-        /// </summary>
-        public AsyncCommand Refresh { get; }
-
-        /// <summary>
-        /// Gets the action to take to go to the settings page.
-        /// </summary>
-        public AsyncCommand GoToSettings { get; }
 
         /// <summary>
         /// Submits the current mood.
@@ -95,6 +91,8 @@ namespace Mootra
         private async Task OnRefresh()
         {
             this.IsBusy = true;
+
+            this.EmotionNames.ToList().Clear();
 
             // Gets emotions then selects unique names.
             IEnumerable<Emotion> emotions = await EmotionService.GetEmotions();

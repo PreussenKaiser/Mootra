@@ -13,8 +13,6 @@ namespace Mootra
         public BrowseEmotionsPage()
         {
             this.InitializeComponent();
-
-            this.BindingContext = new BrowseEmotionsViewModel();
         }
     }
 }

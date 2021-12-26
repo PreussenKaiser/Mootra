@@ -26,7 +26,7 @@ namespace Mootra
             if (db is null)
             {
                 // Get an absolute path to the database file.
-                var databasePath = Path.Combine(FileSystem.AppDataDirectory, "MootraData.db");
+                string databasePath = Path.Combine(FileSystem.AppDataDirectory, "MootraData.db");
 
                 // Gets the file path and creates the database.
                 db = new SQLiteAsyncConnection(databasePath);

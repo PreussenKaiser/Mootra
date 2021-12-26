@@ -13,8 +13,6 @@ namespace Mootra
         public AddEmotionPage()
         {
             this.InitializeComponent();
-
-            this.BindingContext = new AddEmotionViewModel();
         }
     }
 }
