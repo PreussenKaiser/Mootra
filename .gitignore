@@ -4,12 +4,20 @@ Mootra.Android/obj/Debug
 Mootra/bin/Debug
 Mootra/obj/Debug
 
-# Stylecop
+# Release folders
+Mootra.Android/bin/Release
+Mootra.Android/obj/Release
+Mootra/bin/Release
+Mootra/obj/Release
+
+# User info
 Settings.StyleCop
 Mootra/Settings.StyleCop
 Mootra/StyleCop.Cache
+Mootra/Mootra.csproj.user
 Mootra.Android/Settings.StyleCop
 Mootra.Android/StyleCop.Cache
+Mootra/Mootra.Android.csproj.user
 
 # MacOS
 .DS_Store
