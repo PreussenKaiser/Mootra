@@ -22,13 +22,16 @@
 
         <StackLayout VerticalOptions="CenterAndExpand">
             <Label Text="Right now I feel..." FontSize="32"/>
-            <Picker FontSize="Medium" ItemsSource="{Binding EmotionNames}" SelectedItem="{Binding Text}" Title="Select..."/>
+            <Picker FontSize="Medium" ItemsSource="{Binding EmotionNames}"
+                    SelectedItem="{Binding Text}" Title="Select..."/>
+
             <Label Text="Or add a new one..." FontSize="24"/>
             <Entry Text="{Binding Text}" FontSize="Medium" />
         </StackLayout>
 
         <StackLayout VerticalOptions="EndAndExpand" Padding="0,0,0,20">
-            <Button Command="{Binding Submit}" Text="Submit" Style="{DynamicResource primaryButton}"/>
+            <Button Command="{Binding Submit}" Text="Submit"
+                    Style="{DynamicResource primaryButton}"/>
         </StackLayout>
     </StackLayout>
 

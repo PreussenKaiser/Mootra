@@ -19,16 +19,15 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Command="{Binding Remove}">
             <ToolbarItem.IconImageSource>
-                <FontImageSource Size="Large" Glyph="{StaticResource TrashIcon}" FontFamily="FAR"/>
+                <FontImageSource Size="Large" Glyph="{StaticResource TrashIcon}"
+                                 FontFamily="FAR"/>
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <RefreshView IsRefreshing="{Binding IsBusy}" Command="{Binding Refresh}" Padding="30,0,30,0">
-        <CollectionView ItemsSource="{Binding Emotions}"
-                        ItemsLayout="VerticalGrid, 2"
-                        SelectionMode="Single"
-                        SelectedItem="{Binding SelectedEmotion}">
+        <CollectionView ItemsSource="{Binding Emotions}" ItemsLayout="VerticalGrid, 2"
+                        SelectionMode="Single" SelectedItem="{Binding SelectedEmotion}">
 
             <CollectionView.Header>
                 <StackLayout Style="{StaticResource header}" Margin="0,0,0,48">

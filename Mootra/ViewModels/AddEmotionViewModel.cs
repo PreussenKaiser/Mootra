@@ -14,9 +14,20 @@ namespace Mootra
     public sealed class AddEmotionViewModel : BaseViewModel
     {
         /// <summary>
+        /// The query to select only unique names from the database.
+        /// </summary>
+        private const string SelectAllNames = "select distinct Name from Emotion";
+
+        /// <summary>
         /// The text in a text input.
         /// </summary>
         private string text;
+
+        /// <summary>
+        /// The emotion service to handle database querying.
+        /// </summary>
+        private IEmotionService emotionService =
+            DependencyService.Get<IEmotionService>(DependencyFetchTarget.GlobalInstance);
 
         /// <summary>
         /// Contains an enumerable list of emotions.
@@ -26,7 +37,23 @@ namespace Mootra
         /// <summary>
         /// Gets the command to submit current mood.
         /// </summary>
-        public AsyncCommand Submit => new AsyncCommand(this.OnSubmit);
+        public AsyncCommand Submit => new AsyncCommand(async () => 
+        {
+            if (string.IsNullOrWhiteSpace(this.text))
+            {
+                await Application.Current.MainPage.
+                    DisplayAlert("Could not submit", "Nothing was entered.", "OK");
+            }
+            else
+            {
+                await this.emotionService.AddEmotion(this.text);
+
+                // Resets text input.
+                this.Text = string.Empty;
+
+                await this.OnRefresh();
+            }
+        });
 
         /// <summary>
         /// Gets the action to take on refresh.
@@ -52,26 +79,6 @@ namespace Mootra
         }
 
         /// <summary>
-        /// Submits the current mood.
-        /// </summary>
-        /// <returns>If the task was successful or not.</returns>
-        private async Task OnSubmit()
-        {
-            if (!string.IsNullOrWhiteSpace(this.text))
-            {
-                await this.AddEmotion(this.text);
-
-                // Resets text input.
-                this.Text = string.Empty;
-            }
-            else
-            {
-                await Application.Current.MainPage.DisplayAlert
-                    ("Could not submit", "Nothing was entered.", "OK");
-            }
-        }
-
-        /// <summary>
         /// Refreshes the emotion names list.
         /// </summary>
         /// <returns>If the task was successful or not.</returns>
@@ -81,22 +88,11 @@ namespace Mootra
 
             this.EmotionNames.ToList().Clear();
 
-            // Gets emotions then selects unique names.
-            IEnumerable<Emotion> emotions = await EmotionService.GetEmotions();
-            this.EmotionNames = emotions.GroupBy(e => e.Name).Select(g => g.Key).ToList();
+            // Gets distinct emotion names then selects them.
+            IEnumerable<Emotion> emotions = await this.emotionService.GetEmotions(SelectAllNames);
+            this.EmotionNames = emotions.Select(e => e.Name).ToList();
 
             this.IsBusy = false;
-        }
-
-        /// <summary>
-        /// Adds an emotion to the list of emotions.
-        /// </summary>
-        /// <param name="name">The name of the emotion.</param>
-        /// <returns>If the task was successful or not.</returns>
-        private async Task AddEmotion(string name)
-        {
-            await EmotionService.AddEmotion(name);
-            await this.OnRefresh();
         }
     }
 }

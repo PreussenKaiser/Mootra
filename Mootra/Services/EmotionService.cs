@@ -2,46 +2,33 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using Mootra;
 using SQLite;
 using Xamarin.Essentials;
+using Xamarin.Forms;
+
+[assembly: Dependency(typeof(EmotionService))]
 
 namespace Mootra
 {
     /// <summary>
-    /// The class which serves querying of the local database.
+    /// The class which queries the local database.
     /// </summary>
-    public static class EmotionService
+    public sealed class EmotionService : IEmotionService
     {
         /// <summary>
         /// The database for the application.
         /// </summary>
-        private static SQLiteAsyncConnection db;
-
-        /// <summary>
-        /// Initializes the database.
-        /// </summary>
-        /// <returns>Not implemented.</returns>
-        private static async Task Init()
-        {
-            if (db is null)
-            {
-                // Get an absolute path to the database file.
-                string databasePath = Path.Combine(FileSystem.AppDataDirectory, "MootraData.db");
-
-                // Gets the file path and creates the database.
-                db = new SQLiteAsyncConnection(databasePath);
-                await db.CreateTableAsync<Emotion>();
-            }
-        }
+        private SQLiteAsyncConnection db;
 
         /// <summary>
         /// Adds an emotion to the database.
         /// </summary>
         /// <param name="name">The emotion name.</param>
         /// <returns>If the task was completed or not.</returns>
-        public static async Task AddEmotion(string name)
+        public async Task AddEmotion(string name)
         {
-            await Init();
+            await this.Init();
 
             Emotion emotion = new Emotion()
             {
@@ -49,30 +36,48 @@ namespace Mootra
                 DateCreated = DateTime.Now
             };
 
-            int id = await db.InsertAsync(emotion);
+            await this.db.InsertAsync(emotion);
         }
 
         /// <summary>
-        /// Removes an emotion from the database.
+        /// Removes an emotion from the local database.
         /// </summary>
         /// <param name="id">The of the emotion to remove.</param>
         /// <returns>If the task was completed or not.</returns>
-        public static async Task RemoveEmotion(int id)
+        public async Task RemoveEmotion(int id)
         {
-            await Init();
+            await this.Init();
 
-            await db.DeleteAsync<Emotion>(id);
+            await this.db.DeleteAsync<Emotion>(id);
         }
 
         /// <summary>
-        /// Gets an IEnumerable of emotions from the database.
+        /// Gets an IEnumerable of emotions from the local database.
         /// </summary>
+        /// <param name="query">Queries the local database for an enumerable of emotions.</param>
         /// <returns>If the task was completed or not.</returns>
-        public static async Task<IEnumerable<Emotion>> GetEmotions()
+        public async Task<IEnumerable<Emotion>> GetEmotions(string query)
         {
-            await Init();
+            await this.Init();
 
-            return await db.Table<Emotion>().ToListAsync();
+            return await this.db.QueryAsync<Emotion>(query);
+        }
+
+        /// <summary>
+        /// Initializes the local database.
+        /// </summary>
+        /// <returns>Not implemented.</returns>
+        private async Task Init()
+        {
+            if (this.db != null)
+                return;
+
+            // Get an absolute path to the database file.
+            string databasePath = Path.Combine(FileSystem.AppDataDirectory, "MootraData.db");
+
+            // Gets the file path and creates the database.
+            this.db = new SQLiteAsyncConnection(databasePath);
+            await this.db.CreateTableAsync<Emotion>();
         }
     }
 }

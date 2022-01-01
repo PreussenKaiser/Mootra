@@ -13,9 +13,19 @@ namespace Mootra
     public sealed class BrowseEmotionsViewModel : BaseViewModel
     {
         /// <summary>
+        /// The query to select all items from the database.
+        /// </summary>
+        private const string SelectAll = "select * from Emotion";
+
+        /// <summary>
         /// The current selected emotion.
         /// </summary>
         private Emotion selectedEmotion;
+
+        /// <summary>
+        /// The emotion service to handle database querying.
+        /// </summary>
+        private IEmotionService emotionService = DependencyService.Get<IEmotionService>(DependencyFetchTarget.GlobalInstance);
 
         /// <summary>
         /// Stores an observable list of emotions.
@@ -30,7 +40,19 @@ namespace Mootra
         /// <summary>
         /// Gets the action to take on remove.
         /// </summary>
-        public AsyncCommand Remove => new AsyncCommand(this.OnRemove);
+        public AsyncCommand Remove => new AsyncCommand(async () =>
+        {
+            if (this.selectedEmotion is null)
+            {
+                await Application.Current.MainPage.
+                    DisplayAlert(null, "No item was selected.", "OK");
+            }
+            else
+            {
+                await this.emotionService.RemoveEmotion(this.selectedEmotion.Id);
+                await this.OnRefresh();
+            }
+        });
 
         /// <summary>
         /// Gets or sets the current selected emotion.
@@ -59,27 +81,9 @@ namespace Mootra
             this.IsBusy = true;
 
             this.Emotions.ToList().Clear();
-            this.Emotions = await EmotionService.GetEmotions();
+            this.Emotions = await this.emotionService.GetEmotions(SelectAll);
 
             this.IsBusy = false;
-        }
-
-        /// <summary>
-        /// Removes the first emotion in the emotions list.
-        /// </summary>
-        /// <returns>If the task was successful or not.</returns>
-        private async Task OnRemove()
-        {
-            if (this.selectedEmotion is null)
-            {
-                await Application.Current.MainPage.
-                    DisplayAlert("Could not remove an item", "No item was selected.", "OK");
-            }
-            else
-            {
-                await EmotionService.RemoveEmotion(this.selectedEmotion.Id);
-                await this.OnRefresh();
-            }
         }
     }
 }
