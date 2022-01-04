@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MvvmHelpers;
@@ -35,30 +36,41 @@ namespace Mootra
         private IEnumerable<string> emotionNames = new List<string>();
 
         /// <summary>
+        /// Initializes a new instance of the AddEmotionViewModel class.
+        /// </summary>
+        public AddEmotionViewModel()
+        {
+            // Sets commands.
+            this.Submit = new AsyncCommand(async () =>
+            {
+                if (string.IsNullOrWhiteSpace(this.text))
+                {
+                    await Application.Current.MainPage.
+                        DisplayAlert("Could not submit", "Nothing was entered.", "OK");
+                }
+                else
+                {
+                    await this.emotionService.AddEmotion(this.text);
+
+                    // Resets text input.
+                    this.Text = string.Empty;
+
+                    await this.OnRefresh();
+                }
+            });
+
+            this.Refresh = new AsyncCommand(this.OnRefresh);
+        }
+
+        /// <summary>
         /// Gets the command to submit current mood.
         /// </summary>
-        public AsyncCommand Submit => new AsyncCommand(async () => 
-        {
-            if (string.IsNullOrWhiteSpace(this.text))
-            {
-                await Application.Current.MainPage.
-                    DisplayAlert("Could not submit", "Nothing was entered.", "OK");
-            }
-            else
-            {
-                await this.emotionService.AddEmotion(this.text);
-
-                // Resets text input.
-                this.Text = string.Empty;
-
-                await this.OnRefresh();
-            }
-        });
+        public AsyncCommand Submit { get; }
 
         /// <summary>
         /// Gets the action to take on refresh.
         /// </summary>
-        public AsyncCommand Refresh => new AsyncCommand(this.OnRefresh);
+        public AsyncCommand Refresh { get; }
 
         /// <summary>
         /// Gets or sets the text in a text input.

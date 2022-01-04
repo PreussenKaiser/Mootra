@@ -33,26 +33,36 @@ namespace Mootra
         private IEnumerable<Emotion> emotions = new List<Emotion>();
 
         /// <summary>
+        /// Initializes a new instance of the BrowseEmotionsViewModel class.
+        /// </summary>
+        public BrowseEmotionsViewModel()
+        {
+            // Sets commands.
+            this.Refresh = new AsyncCommand(this.OnRefresh);
+            this.Remove = new AsyncCommand(async () =>
+            {
+                if (this.selectedEmotion is null)
+                {
+                    await Application.Current.MainPage.
+                        DisplayAlert(null, "No item was selected.", "OK");
+                }
+                else
+                {
+                    await this.emotionService.RemoveEmotion(this.selectedEmotion.Id);
+                    await this.OnRefresh();
+                }
+            });
+        }
+
+        /// <summary>
         /// Gets the action to take on refresh.
         /// </summary>
-        public AsyncCommand Refresh => new AsyncCommand(this.OnRefresh);
+        public AsyncCommand Refresh { get; }
 
         /// <summary>
         /// Gets the action to take on remove.
         /// </summary>
-        public AsyncCommand Remove => new AsyncCommand(async () =>
-        {
-            if (this.selectedEmotion is null)
-            {
-                await Application.Current.MainPage.
-                    DisplayAlert(null, "No item was selected.", "OK");
-            }
-            else
-            {
-                await this.emotionService.RemoveEmotion(this.selectedEmotion.Id);
-                await this.OnRefresh();
-            }
-        });
+        public AsyncCommand Remove { get; }
 
         /// <summary>
         /// Gets or sets the current selected emotion.
