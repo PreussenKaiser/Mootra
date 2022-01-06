@@ -23,7 +23,7 @@ namespace Mootra
             DependencyService.Get<IEmotionService>(DependencyFetchTarget.GlobalInstance);
 
         /// <summary>
-        /// Stores an observable list of emotions.
+        /// The contains the current list of emotions.
         /// </summary>
         private IEnumerable<Emotion> emotions = new List<Emotion>();
 
@@ -69,7 +69,7 @@ namespace Mootra
         }
 
         /// <summary>
-        /// Gets or sets an observable list of emotions.
+        /// Gets or sets the current list of emotions.
         /// </summary>
         public IEnumerable<Emotion> Emotions
         {

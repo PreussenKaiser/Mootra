@@ -42,7 +42,7 @@ namespace Mootra
         /// <summary>
         /// Removes an emotion from the local database.
         /// </summary>
-        /// <param name="id">The of the emotion to remove.</param>
+        /// <param name="id">The id of the emotion to remove.</param>
         /// <returns>No value.</returns>
         public async Task RemoveEmotion(int id)
         {
@@ -52,7 +52,7 @@ namespace Mootra
         }
 
         /// <summary>
-        /// Gets an IEnumerable of emotions from the local database.
+        /// Gets emotions from the local database.
         /// </summary>
         /// <param name="query">Queries the local database for an enumerable of emotions.</param>
         /// <returns>No value.</returns>

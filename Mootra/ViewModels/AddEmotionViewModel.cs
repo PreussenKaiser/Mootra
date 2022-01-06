@@ -14,7 +14,7 @@ namespace Mootra
     public sealed class AddEmotionViewModel : BaseViewModel
     {
         /// <summary>
-        /// The text in a text input.
+        /// The text UI inputs.
         /// </summary>
         private string text;
 
@@ -25,7 +25,7 @@ namespace Mootra
             DependencyService.Get<IEmotionService>(DependencyFetchTarget.GlobalInstance);
 
         /// <summary>
-        /// Contains an enumerable list of emotions.
+        /// Contains the current list of emotion names.
         /// </summary>
         private IEnumerable<string> emotionNames = new List<string>();
 
@@ -57,7 +57,7 @@ namespace Mootra
         }
 
         /// <summary>
-        /// Gets the command to submit current mood.
+        /// Gets the action to take when submitting a mood.
         /// </summary>
         public AsyncCommand Submit { get; }
 
@@ -67,7 +67,7 @@ namespace Mootra
         public AsyncCommand Refresh { get; }
 
         /// <summary>
-        /// Gets or sets the text in a text input.
+        /// Gets or sets the text in UI inputs.
         /// </summary>
         public string Text
         {
@@ -76,7 +76,7 @@ namespace Mootra
         }
 
         /// <summary>
-        /// Gets or sets an enumerable list of emotion names.
+        /// Gets or sets the current list of emotion names.
         /// </summary>
         public IEnumerable<string> EmotionNames
         {
@@ -93,8 +93,8 @@ namespace Mootra
             this.IsBusy = true;
 
             // Gets distinct emotion names then selects them.
-            IEnumerable<Emotion> emotions = await this.emotionService.GetEmotions("select distinct Name from Emotion");
-            this.EmotionNames = emotions.Select(e => e.Name).ToList();
+            this.EmotionNames = (await this.emotionService.GetEmotions("select distinct Name from Emotion"))
+                .Select(e => e.Name).ToList();
 
             this.IsBusy = false;
         }
