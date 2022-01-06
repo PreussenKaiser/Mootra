@@ -19,5 +19,10 @@
         /// The reference for the trash icon.
         /// </summary>
         public static readonly string Trash = "\uf2ed";
+
+        /// <summary>
+        /// The reference for the edit icon.
+        /// </summary>
+        public static readonly string Edit = "\uf044";
     }
 }

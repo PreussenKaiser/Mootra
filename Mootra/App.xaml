@@ -9,6 +9,7 @@
             <x:String x:Key="CalendarPlusIcon">&#xf271;</x:String>
             <x:String x:Key="CalendarIcon">&#xf133;</x:String>
             <x:String x:Key="TrashIcon">&#xf2ed;</x:String>
+            <x:String x:Key="EditIcon">&#xf044;</x:String>
             
             <Color x:Key="backgroundColor">#f2f2f7</Color>
             <Color x:Key="backgroundColorDark">#212121</Color>

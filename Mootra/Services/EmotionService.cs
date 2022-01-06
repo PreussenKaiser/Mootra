@@ -14,7 +14,7 @@ namespace Mootra
     /// <summary>
     /// The class which queries the local database.
     /// </summary>
-    public sealed class EmotionService : IEmotionService
+    public class EmotionService : IEmotionService
     {
         /// <summary>
         /// The database for the application.
@@ -22,19 +22,13 @@ namespace Mootra
         private SQLiteAsyncConnection db;
 
         /// <summary>
-        /// Adds an emotion to the database.
+        /// Adds an emotion to the local database.
         /// </summary>
-        /// <param name="name">The emotion name.</param>
+        /// <param name="emotion">The emotion to add.</param>
         /// <returns>No value.</returns>
-        public async Task AddEmotion(string name)
+        public async Task AddEmotionAsync(Emotion emotion)
         {
             await this.Init();
-
-            Emotion emotion = new Emotion()
-            {
-                Name = name,
-                DateCreated = DateTime.Now
-            };
 
             await this.db.InsertAsync(emotion);
         }
@@ -44,7 +38,7 @@ namespace Mootra
         /// </summary>
         /// <param name="id">The id of the emotion to remove.</param>
         /// <returns>No value.</returns>
-        public async Task RemoveEmotion(int id)
+        public async Task RemoveEmotionAsync(int id)
         {
             await this.Init();
 
@@ -52,11 +46,25 @@ namespace Mootra
         }
 
         /// <summary>
+        /// Updates the name of an emotion in the local database.
+        /// </summary>
+        /// <param name="emotion">The the emotion to update.</param>
+        /// <param name="update">The update to perform.</param>
+        /// <returns>No value.</returns>
+        public async Task UpdateEmotionAsync(Emotion emotion, Func<Emotion, object> update)
+        {
+            await this.Init();
+
+            update(emotion);
+            await this.db.UpdateAsync(emotion);
+        }
+
+        /// <summary>
         /// Gets emotions from the local database.
         /// </summary>
         /// <param name="query">Queries the local database for an enumerable of emotions.</param>
         /// <returns>No value.</returns>
-        public async Task<IEnumerable<Emotion>> GetEmotions(string query)
+        public async Task<IEnumerable<Emotion>> QueryEmotionsAsync(string query)
         {
             await this.Init();
 

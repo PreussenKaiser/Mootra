@@ -17,6 +17,12 @@
     </ContentPage.Behaviors>
 
     <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding Edit}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Size="Large" Glyph="{StaticResource EditIcon}"
+                                 FontFamily="FAR"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
         <ToolbarItem Command="{Binding Remove}">
             <ToolbarItem.IconImageSource>
                 <FontImageSource Size="Large" Glyph="{StaticResource TrashIcon}"

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
@@ -12,14 +13,9 @@ namespace Mootra
     public sealed class BrowseEmotionsViewModel : BaseViewModel
     {
         /// <summary>
-        /// The current selected emotion.
-        /// </summary>
-        private Emotion selectedEmotion;
-
-        /// <summary>
         /// The emotion service to handle database querying.
         /// </summary>
-        private IEmotionService emotionService =
+        private readonly IEmotionService emotionService =
             DependencyService.Get<IEmotionService>(DependencyFetchTarget.GlobalInstance);
 
         /// <summary>
@@ -34,19 +30,8 @@ namespace Mootra
         {
             // Sets commands.
             this.Refresh = new AsyncCommand(this.OnRefresh);
-            this.Remove = new AsyncCommand(async () =>
-            {
-                if (this.selectedEmotion is null)
-                {
-                    await Application.Current.MainPage.
-                        DisplayAlert(null, "No item was selected.", "OK");
-                }
-                else
-                {
-                    await this.emotionService.RemoveEmotion(this.selectedEmotion.Id);
-                    await this.OnRefresh();
-                }
-            });
+            this.Remove = new AsyncCommand(this.OnRemove);
+            this.Edit = new AsyncCommand(this.OnEdit);
         }
 
         /// <summary>
@@ -60,13 +45,14 @@ namespace Mootra
         public AsyncCommand Remove { get; }
 
         /// <summary>
+        /// Gets the action to take on edit.
+        /// </summary>
+        public AsyncCommand Edit { get; }
+
+        /// <summary>
         /// Gets or sets the current selected emotion.
         /// </summary>
-        public Emotion SelectedEmotion
-        {
-            get => this.selectedEmotion;
-            set => this.SetProperty(ref this.selectedEmotion, value);
-        }
+        public Emotion SelectedEmotion { get; set; }
 
         /// <summary>
         /// Gets or sets the current list of emotions.
@@ -86,9 +72,67 @@ namespace Mootra
             this.IsBusy = true;
 
             // Selects all emotions.
-            this.Emotions = await this.emotionService.GetEmotions("select * from Emotion");
+            this.Emotions = await this.emotionService.QueryEmotionsAsync("select * from Emotion");
 
             this.IsBusy = false;
+        }
+
+        /// <summary>
+        /// Removes the selected emotion.
+        /// </summary>
+        /// <returns>No value.</returns>
+        private async Task OnRemove()
+        {
+            if (await this.EmotionIsSelected())
+            {
+                await this.emotionService.RemoveEmotionAsync(this.SelectedEmotion.Id);
+
+                // Clears selection.
+                this.SelectedEmotion = null;
+
+                await this.OnRefresh();
+            }
+        }
+
+        /// <summary>
+        /// Edits the selected emotion.
+        /// </summary>
+        /// <returns>No value.</returns>
+        private async Task OnEdit()
+        {
+            if (await this.EmotionIsSelected())
+            {
+                string userInput = await Application.Current.MainPage.
+                    DisplayPromptAsync("Edit name", null);
+
+                if (!string.IsNullOrWhiteSpace(userInput))
+                {
+                    // Edits the name.
+                    Func<Emotion, string> editName = e => e.Name = userInput;
+                    await this.emotionService.UpdateEmotionAsync(this.SelectedEmotion, editName);
+
+                    await this.OnRefresh();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Validates if an emotion is selected.
+        /// </summary>
+        /// <returns>If an emotion is selected or not.</returns>
+        private async Task<bool> EmotionIsSelected()
+        {
+            bool result = true;
+
+            if (this.SelectedEmotion is null)
+            {
+                await Application.Current.MainPage.
+                    DisplayAlert(null, "No item was selected.", "OK");
+
+                result = false;
+            }
+
+            return result;
         }
     }
 }
