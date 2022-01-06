@@ -12,21 +12,21 @@ namespace Mootra
         /// Adds an emotion to the database.
         /// </summary>
         /// <param name="name">The name of the emotion.</param>
-        /// <returns>If the action was completed or not.</returns>
+        /// <returns>No value.</returns>
         Task AddEmotion(string name);
 
         /// <summary>
         /// Removes an emotion from the database.
         /// </summary>
         /// <param name="id">The id of the emotion.</param>
-        /// <returns>If the action was completed or not.</returns>
+        /// <returns>No value.</returns>
         Task RemoveEmotion(int id);
 
         /// <summary>
         /// Queries the database for an enumerable of emotions.
         /// </summary>
         /// <param name="query">The query to use.</param>
-        /// <returns>If the action was completed or not.</returns>
+        /// <returns>No value.</returns>
         Task<IEnumerable<Emotion>> GetEmotions(string query);
     }
 }

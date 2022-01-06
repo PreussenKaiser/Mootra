@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MvvmHelpers;
@@ -9,16 +8,11 @@ using Xamarin.Forms;
 namespace Mootra
 {
     /// <summary>
-    /// The class which contains business logic for the add emotion page.
+    /// The class which contains the backend for the AddEmotion page.
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.StyleCop.CSharp.ReadabilityRules", "SA1126:PrefixCallsCorrectly", Justification = "Cannot implement suggested prefixes.")]
     public sealed class AddEmotionViewModel : BaseViewModel
     {
-        /// <summary>
-        /// The query to select only unique names from the database.
-        /// </summary>
-        private const string SelectAllNames = "select distinct Name from Emotion";
-
         /// <summary>
         /// The text in a text input.
         /// </summary>
@@ -93,15 +87,13 @@ namespace Mootra
         /// <summary>
         /// Refreshes the emotion names list.
         /// </summary>
-        /// <returns>If the task was successful or not.</returns>
+        /// <returns>No value.</returns>
         private async Task OnRefresh()
         {
             this.IsBusy = true;
 
-            this.EmotionNames.ToList().Clear();
-
             // Gets distinct emotion names then selects them.
-            IEnumerable<Emotion> emotions = await this.emotionService.GetEmotions(SelectAllNames);
+            IEnumerable<Emotion> emotions = await this.emotionService.GetEmotions("select distinct Name from Emotion");
             this.EmotionNames = emotions.Select(e => e.Name).ToList();
 
             this.IsBusy = false;

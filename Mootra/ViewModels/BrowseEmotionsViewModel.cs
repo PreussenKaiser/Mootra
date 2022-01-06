@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
@@ -13,11 +12,6 @@ namespace Mootra
     public sealed class BrowseEmotionsViewModel : BaseViewModel
     {
         /// <summary>
-        /// The query to select all items from the database.
-        /// </summary>
-        private const string SelectAll = "select * from Emotion";
-
-        /// <summary>
         /// The current selected emotion.
         /// </summary>
         private Emotion selectedEmotion;
@@ -25,7 +19,8 @@ namespace Mootra
         /// <summary>
         /// The emotion service to handle database querying.
         /// </summary>
-        private IEmotionService emotionService = DependencyService.Get<IEmotionService>(DependencyFetchTarget.GlobalInstance);
+        private IEmotionService emotionService =
+            DependencyService.Get<IEmotionService>(DependencyFetchTarget.GlobalInstance);
 
         /// <summary>
         /// Stores an observable list of emotions.
@@ -85,13 +80,13 @@ namespace Mootra
         /// <summary>
         /// Refreshes the emotions list.
         /// </summary>
-        /// <returns>If the task was successful or not.</returns>
+        /// <returns>No value.</returns>
         private async Task OnRefresh()
         {
             this.IsBusy = true;
 
-            this.Emotions.ToList().Clear();
-            this.Emotions = await this.emotionService.GetEmotions(SelectAll);
+            // Selects all emotions.
+            this.Emotions = await this.emotionService.GetEmotions("select * from Emotion");
 
             this.IsBusy = false;
         }
