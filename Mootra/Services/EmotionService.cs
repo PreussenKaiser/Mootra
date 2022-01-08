@@ -8,7 +8,6 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(EmotionService))]
-
 namespace Mootra
 {
     /// <summary>

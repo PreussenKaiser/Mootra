@@ -7,7 +7,6 @@
              x:Class="Mootra.BrowseEmotionsPage"
              BackgroundColor="{AppThemeBinding Light={StaticResource backgroundColor},
                                                Dark={StaticResource backgroundColorDark}}">
-
     <ContentPage.BindingContext>
         <viewmodels:BrowseEmotionsViewModel/>
     </ContentPage.BindingContext>
@@ -34,7 +33,6 @@
     <RefreshView IsRefreshing="{Binding IsBusy}" Command="{Binding Refresh}" Padding="30,0,30,0">
         <CollectionView ItemsSource="{Binding Emotions}" ItemsLayout="VerticalGrid, 2"
                         SelectionMode="Single" SelectedItem="{Binding SelectedEmotion}">
-
             <CollectionView.Header>
                 <StackLayout Style="{StaticResource header}" Margin="0,0,0,48">
                     <Label Text="Calendar" Style="{StaticResource title}"/>
@@ -57,15 +55,13 @@
 
                         <Frame Style="{StaticResource calendarItem}">
                             <StackLayout>
-                                <Label Text="{Binding Name}" FontSize="Medium"/>
-                                <Label Text="{Binding DateCreated}"/>
+                                <Label Style="{StaticResource label}" Text="{Binding Name}" FontSize="Medium"/>
+                                <Label Style="{StaticResource label}" Text="{Binding DateCreated}"/>
                             </StackLayout>
                         </Frame>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-            
         </CollectionView>
     </RefreshView>
-
 </ContentPage>

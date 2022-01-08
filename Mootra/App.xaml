@@ -10,6 +10,7 @@
             <x:String x:Key="CalendarIcon">&#xf133;</x:String>
             <x:String x:Key="TrashIcon">&#xf2ed;</x:String>
             <x:String x:Key="EditIcon">&#xf044;</x:String>
+            <x:String x:Key="MoonIcon">&#xf186;</x:String>
             
             <Color x:Key="backgroundColor">#f2f2f7</Color>
             <Color x:Key="backgroundColorDark">#212121</Color>
@@ -23,6 +24,8 @@
             <Style x:Key="primaryButton" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource primaryColor},
                                                                            Dark={StaticResource primaryColorDark}}"/>
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource textColor},
+                                                                     Dark={StaticResource textColorDark}}"/>
                 <Setter Property="CornerRadius" Value="16"/>
             </Style>
 
@@ -39,9 +42,28 @@
             </Style>
 
             <Style x:Key="title" TargetType="Label">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource textColor},
+                                                                     Dark={StaticResource textColorDark}}"/>
                 <Setter Property="FontSize" Value="48"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
                 <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+
+            <Style x:Key="label" TargetType="Label">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource textColor},
+                                                                     Dark={StaticResource textColorDark}}"/>
+            </Style>
+
+            <Style x:Key="picker" TargetType="Picker">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource textColor},
+                                                                     Dark={StaticResource textColorDark}}"/>
+                <Setter Property="TitleColor" Value="#808080"/>
+            </Style>
+
+            <Style x:Key="entry" TargetType="Entry">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource textColor},
+                                                                     Dark={StaticResource textColorDark}}"/>
+                <Setter Property="PlaceholderColor" Value="#808080"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

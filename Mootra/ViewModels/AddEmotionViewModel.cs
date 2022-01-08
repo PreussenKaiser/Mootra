@@ -4,14 +4,14 @@ using System.Threading.Tasks;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
 using Xamarin.Forms;
+using Command = MvvmHelpers.Commands.Command;
 
 namespace Mootra
 {
     /// <summary>
     /// The class which contains the backend for the AddEmotion page.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.StyleCop.CSharp.ReadabilityRules", "SA1126:PrefixCallsCorrectly", Justification = "Cannot implement suggested prefixes.")]
-    public sealed class AddEmotionViewModel : BaseViewModel
+    public class AddEmotionViewModel : BaseViewModel
     {
         /// <summary>
         /// The emotion service to handle database querying.
@@ -34,9 +34,9 @@ namespace Mootra
         /// </summary>
         public AddEmotionViewModel()
         {
-            // Sets commands.
             this.Refresh = new AsyncCommand(this.OnRefresh);
             this.Submit = new AsyncCommand(this.OnSubmit);
+            this.ThemeChange = new Command(this.OnThemeChange);
         }
 
         /// <summary>
@@ -48,6 +48,11 @@ namespace Mootra
         /// Gets the action to take when submitting a mood.
         /// </summary>
         public AsyncCommand Submit { get; }
+
+        /// <summary>
+        /// Gets the action to take when changing theme.
+        /// </summary>
+        public Command ThemeChange { get; }
 
         /// <summary>
         /// Gets or sets the text in UI inputs.
@@ -75,7 +80,7 @@ namespace Mootra
         {
             this.IsBusy = true;
 
-            // Gets distinct emotion names then selects them.
+            // Gets distinct emotion names.
             this.EmotionNames = (await this.emotionService.QueryEmotionsAsync("select distinct Name from Emotion"))
                 .Select(e => e.Name).ToList();
 
@@ -107,6 +112,24 @@ namespace Mootra
                 this.Text = string.Empty;
 
                 await this.OnRefresh();
+            }
+        }
+
+        /// <summary>
+        /// Toggles the theme.
+        /// </summary>
+        private void OnThemeChange()
+        {
+            switch (Settings.AppTheme)
+            {
+                case 1:
+                    Settings.AppTheme = 2;
+
+                    break;
+
+                case 2:
+                    Settings.AppTheme = 1;
+                    break;
             }
         }
     }

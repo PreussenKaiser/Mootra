@@ -24,5 +24,10 @@
         /// The reference for the edit icon.
         /// </summary>
         public static readonly string Edit = "\uf044";
+
+        /// <summary>
+        /// The reference for the moon icon.
+        /// </summary>
+        public static readonly string Moon = "\uf186";
     }
 }

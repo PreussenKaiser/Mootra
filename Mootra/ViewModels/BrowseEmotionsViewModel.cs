@@ -10,7 +10,7 @@ namespace Mootra
     /// <summary>
     /// The class which contains the backend for the BrowseEmotions page.
     /// </summary>
-    public sealed class BrowseEmotionsViewModel : BaseViewModel
+    public class BrowseEmotionsViewModel : BaseViewModel
     {
         /// <summary>
         /// The emotion service to handle database querying.
@@ -28,7 +28,6 @@ namespace Mootra
         /// </summary>
         public BrowseEmotionsViewModel()
         {
-            // Sets commands.
             this.Refresh = new AsyncCommand(this.OnRefresh);
             this.Remove = new AsyncCommand(this.OnRemove);
             this.Edit = new AsyncCommand(this.OnEdit);
@@ -122,14 +121,12 @@ namespace Mootra
         /// <returns>If an emotion is selected or not.</returns>
         private async Task<bool> EmotionIsSelected()
         {
-            bool result = true;
+            bool result = this.SelectedEmotion != null;
 
-            if (this.SelectedEmotion is null)
+            if (!result)
             {
                 await Application.Current.MainPage.
                     DisplayAlert(null, "No item was selected.", "OK");
-
-                result = false;
             }
 
             return result;

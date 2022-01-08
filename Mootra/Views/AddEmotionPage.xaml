@@ -6,7 +6,6 @@
              x:Class="Mootra.AddEmotionPage"
              BackgroundColor="{AppThemeBinding Light={StaticResource backgroundColor},
                                                Dark={StaticResource backgroundColorDark}}">
-
     <ContentPage.BindingContext>
         <viewmodels:AddEmotionViewModel/>
     </ContentPage.BindingContext>
@@ -15,18 +14,30 @@
         <xct:EventToCommandBehavior EventName="Appearing" Command="{Binding Refresh}"/>
     </ContentPage.Behaviors>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding ThemeChange}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Size="Large" Glyph="{StaticResource MoonIcon}"
+                                 FontFamily="FAR"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
     <StackLayout Padding="30,0,30,0">
         <StackLayout Style="{StaticResource header}">
             <Label Text="Mootra" Style="{StaticResource title}"/>
         </StackLayout>
 
         <StackLayout VerticalOptions="CenterAndExpand">
-            <Label Text="Right now I feel..." FontSize="32"/>
-            <Picker FontSize="Medium" ItemsSource="{Binding EmotionNames}"
-                    SelectedItem="{Binding Text}" Title="Select..."/>
+            <Label Style="{StaticResource label}" Text="Right now I feel..." FontSize="32"/>
+            <Picker Style="{StaticResource picker}" FontSize="Medium"
+                    ItemsSource="{Binding EmotionNames}" SelectedItem="{Binding Text}"
+                    Title="Select..."/>
 
-            <Label Text="Or add a new one..." FontSize="24"/>
-            <Entry Text="{Binding Text}" FontSize="Medium" />
+            <Label Style="{StaticResource label}" Text="Or add a new one..."
+                   FontSize="24"/>
+            <Entry Style="{StaticResource entry}" Text="{Binding Text}"
+                   Placeholder="Type here..." FontSize="Medium" />
         </StackLayout>
 
         <StackLayout VerticalOptions="EndAndExpand" Padding="0,0,0,20">
@@ -34,5 +45,4 @@
                     Style="{DynamicResource primaryButton}"/>
         </StackLayout>
     </StackLayout>
-
 </ContentPage>

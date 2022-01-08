@@ -2,7 +2,10 @@
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 
+[assembly: Dependency(typeof(Mootra.Environment))]
 namespace Mootra
 {
     /// <summary>
@@ -35,6 +38,36 @@ namespace Mootra
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             this.LoadApplication(new App());
+        }
+    }
+
+    /// <summary>
+    /// The class which dynamically sets the UI.
+    /// </summary>
+    public class Environment : IEnvironment
+    {
+        /// <summary>
+        /// Sets the status bar color.
+        /// </summary>
+        /// <param name="color">The status bar color to set.</param>
+        /// <param name="darkStatusBarTint">The status bar tint to set.</param>
+        public void SetStatusBarColor(System.Drawing.Color color, bool darkStatusBarTint)
+        {
+            if (Build.VERSION.SdkInt < Android.OS.BuildVersionCodes.Lollipop)
+                return;
+
+            var activity = Platform.CurrentActivity;
+            var window = activity.Window;
+
+            window.AddFlags(Android.Views.WindowManagerFlags.DrawsSystemBarBackgrounds);
+            window.ClearFlags(Android.Views.WindowManagerFlags.TranslucentStatus);
+            window.SetStatusBarColor(color.ToPlatformColor());
+
+            if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.M)
+            {
+                var flag = (Android.Views.StatusBarVisibility)Android.Views.SystemUiFlags.LightStatusBar;
+                window.DecorView.SystemUiVisibility = darkStatusBarTint ? flag : 0;
+            }
         }
     }
 }

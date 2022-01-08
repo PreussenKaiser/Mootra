@@ -1,5 +1,4 @@
-﻿using Xamarin.Essentials;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace Mootra
 {
@@ -16,6 +15,7 @@ namespace Mootra
             this.InitializeComponent();
 
             this.MainPage = new AppShell();
+            ThemeHelper.SetTheme();
         }
     }
 }
