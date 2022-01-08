@@ -4,13 +4,13 @@ using System.Threading.Tasks;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
 using Xamarin.Forms;
-using Command = MvvmHelpers.Commands.Command;
 
 namespace Mootra
 {
     /// <summary>
     /// The class which contains the backend for the AddEmotion page.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.StyleCop.CSharp.ReadabilityRules", "SA1126:PrefixCallsCorrectly", Justification = "Cannot implement suggested prefixes.")]
     public class AddEmotionViewModel : BaseViewModel
     {
         /// <summary>
@@ -36,7 +36,7 @@ namespace Mootra
         {
             this.Refresh = new AsyncCommand(this.OnRefresh);
             this.Submit = new AsyncCommand(this.OnSubmit);
-            this.ThemeChange = new Command(this.OnThemeChange);
+            this.GoToSettings = new AsyncCommand(this.OnGoToSettings);
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Mootra
         /// <summary>
         /// Gets the action to take when changing theme.
         /// </summary>
-        public Command ThemeChange { get; }
+        public AsyncCommand GoToSettings { get; }
 
         /// <summary>
         /// Gets or sets the text in UI inputs.
@@ -116,21 +116,12 @@ namespace Mootra
         }
 
         /// <summary>
-        /// Toggles the theme.
+        /// Goes to the settings page.
         /// </summary>
-        private void OnThemeChange()
+        /// <returns>No value.</returns>
+        private async Task OnGoToSettings()
         {
-            switch (Settings.AppTheme)
-            {
-                case 1:
-                    Settings.AppTheme = 2;
-
-                    break;
-
-                case 2:
-                    Settings.AppTheme = 1;
-                    break;
-            }
+            await Shell.Current.GoToAsync(nameof(SettingsPage));
         }
     }
 }

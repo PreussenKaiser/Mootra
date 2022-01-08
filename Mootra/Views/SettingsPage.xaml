@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:Mootra"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="Mootra.SettingsPage"
+             BackgroundColor="{AppThemeBinding Light={StaticResource backgroundColor},
+                               Dark={StaticResource backgroundColorDark}}">
+    <ContentPage.BindingContext>
+        <viewmodels:SettingsPageViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout Padding="30,0,30,0">
+        <StackLayout Style="{StaticResource header}">
+            <Label Text="Settings" Style="{StaticResource title}"/>
+        </StackLayout>
+
+        <StackLayout Padding="0,30,0,0">
+            <StackLayout Padding="0,8,0,8">
+                <Label Style="{StaticResource label}" Text="Select a theme..."
+                       FontSize="Medium"/>
+                <Picker Style="{StaticResource picker}" FontSize="Medium"
+                        ItemsSource="{Binding Themes}" SelectedItem="{Binding SelectedTheme}"
+                        Title="Select..."/>                
+            </StackLayout>
+
+            <StackLayout Padding="0,8,0,8">
+                <Label Style="{StaticResource label}" Text="{Binding AppVersion}"
+                       FontSize="Medium"/>
+            </StackLayout>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

@@ -15,10 +15,10 @@
     </ContentPage.Behaviors>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding ThemeChange}">
+        <ToolbarItem Command="{Binding GoToSettings}">
             <ToolbarItem.IconImageSource>
-                <FontImageSource Size="Large" Glyph="{StaticResource MoonIcon}"
-                                 FontFamily="FAR"/>
+                <FontImageSource Size="Large" Glyph="{StaticResource GearIcon}"
+                                 FontFamily="FAS"/>
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
     </ContentPage.ToolbarItems>

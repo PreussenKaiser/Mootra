@@ -11,11 +11,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Fonts\bootstrap-icons.ttf" />
+    <None Remove="Resources\Fonts\bootstrap-icons.woff" />
     <None Remove="Resources\Fonts\fa-regular.otf" />
+    <None Remove="Resources\Fonts\fa-solid.otf" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\Fonts\fa-regular.otf" />
+    <EmbeddedResource Include="Resources\Fonts\fa-solid.otf" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,5 +41,14 @@
     <Compile Update="Views\BrowseEmotionsPage.xaml.cs">
       <DependentUpon>BrowseEmotionsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\SettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

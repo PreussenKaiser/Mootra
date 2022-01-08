@@ -9,20 +9,19 @@ namespace Mootra
     {
         /// <summary>
         /// The application theme.
-        /// 0 = default, 1 = light, 2 = dark.
         /// </summary>
-        private const int Theme = 0;
+        private static Theme theme = Theme.Default;
 
         /// <summary>
         /// Gets or sets the application theme.
         /// </summary>
-        public static int AppTheme
+        public static string AppTheme
         {
-            get => Preferences.Get(nameof(AppTheme), Theme);
+            get => Preferences.Get(nameof(AppTheme), theme.ToString());
 
             set
             {
-                Preferences.Set(nameof(AppTheme), value);
+                Preferences.Set(nameof(AppTheme), value.ToString());
                 ThemeHelper.SetTheme();
             }
         }

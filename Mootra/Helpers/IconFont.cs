@@ -26,8 +26,8 @@
         public static readonly string Edit = "\uf044";
 
         /// <summary>
-        /// The reference for the moon icon.
+        /// The reference for the gear icon.
         /// </summary>
-        public static readonly string Moon = "\uf186";
+        public static readonly string Gear = "\u2699";
     }
 }

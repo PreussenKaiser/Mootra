@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 using Color = System.Drawing.Color;
 
 namespace Mootra
@@ -15,24 +16,31 @@ namespace Mootra
         {
             var environment = DependencyService.Get<IEnvironment>();
 
-            switch (Settings.AppTheme)
+            switch (Enum.Parse(typeof(Theme), Settings.AppTheme))
             {
-                case 0:
+                case Theme.Default:
                     App.Current.UserAppTheme = OSAppTheme.Unspecified;
 
                     break;
 
-                case 1:
+                case Theme.Light:
                     App.Current.UserAppTheme = OSAppTheme.Light;
-                    environment?.SetStatusBarColor(Color.FromArgb(242, 242, 247), true);
 
                     break;
 
-                case 2:
+                case Theme.Dark:
                     App.Current.UserAppTheme = OSAppTheme.Dark;
-                    environment?.SetStatusBarColor(Color.FromArgb(33, 33, 33), false);
 
                     break;
+            }
+
+            if (App.Current.RequestedTheme == OSAppTheme.Dark)
+            {
+                environment?.SetStatusBarColor(Color.FromArgb(33, 33, 33), false);
+            }
+            else
+            {
+                environment?.SetStatusBarColor(Color.FromArgb(242, 242, 247), true);
             }
         }
     }
