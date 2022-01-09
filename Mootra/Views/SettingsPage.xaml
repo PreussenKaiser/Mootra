@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:Mootra"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="Mootra.SettingsPage"
              BackgroundColor="{AppThemeBinding Light={StaticResource backgroundColor},
                                Dark={StaticResource backgroundColorDark}}">
@@ -26,7 +25,7 @@
 
             <StackLayout Padding="0,8,0,8">
                 <Label Style="{StaticResource label}" Text="{Binding AppVersion}"
-                       FontSize="Medium"/>
+                       FontSize="Medium" Opacity=".5"/>
             </StackLayout>
         </StackLayout>
     </StackLayout>
