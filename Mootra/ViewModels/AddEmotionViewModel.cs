@@ -25,6 +25,11 @@ namespace Mootra
         private string text;
 
         /// <summary>
+        /// Determines wheither the picker is enabled or not.
+        /// </summary>
+        private bool isPickerEnabled;
+
+        /// <summary>
         /// Contains the current list of emotion names.
         /// </summary>
         private IEnumerable<string> emotionNames = new List<string>();
@@ -69,7 +74,21 @@ namespace Mootra
         public IEnumerable<string> EmotionNames
         {
             get => this.emotionNames;
-            set => this.SetProperty(ref this.emotionNames, value);
+
+            set
+            {
+                this.SetProperty(ref this.emotionNames, value);
+                this.IsPickerEnabled = this.emotionNames.Any();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets wheither the picker is enabled or not.
+        /// </summary>
+        public bool IsPickerEnabled
+        {
+            get => this.isPickerEnabled;
+            set => this.SetProperty(ref this.isPickerEnabled, value);
         }
 
         /// <summary>

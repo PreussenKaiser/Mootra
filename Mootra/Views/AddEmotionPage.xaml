@@ -32,7 +32,7 @@
             <Label Style="{StaticResource label}" Text="Right now I feel..." FontSize="32"/>
             <Picker Style="{StaticResource picker}" FontSize="Medium"
                     ItemsSource="{Binding EmotionNames}" SelectedItem="{Binding Text}"
-                    Title="Select..."/>
+                    Title="Select..." IsEnabled="{Binding IsPickerEnabled}"/>
 
             <Label Style="{StaticResource label}" Text="Or add a new one..."
                    FontSize="24"/>
