@@ -23,5 +23,10 @@ namespace Mootra
         /// Gets or sets the date of creation.
         /// </summary>
         public DateTime DateCreated { get; set; }
+
+        /// <summary>
+        /// Gets or sets the time of creation.
+        /// </summary>
+        public string TimeCreated => this.DateCreated.ToString("h:mtt").ToLower();
     }
 }

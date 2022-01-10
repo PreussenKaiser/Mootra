@@ -43,9 +43,9 @@
 
             <CollectionView.GroupHeaderTemplate>
                 <DataTemplate>
-                    <StackLayout Padding="0,16,0,16">
-                        <Label Text="{Binding DateCreated}" Style="{StaticResource label}"
-                               FontSize="Large"/>
+                    <StackLayout Padding="16,16,16,16">
+                        <Label Text="{Binding Key}" Style="{StaticResource label}"
+                               FontSize="Large" HorizontalOptions="Center"/>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.GroupHeaderTemplate>
@@ -66,8 +66,10 @@
 
                         <Frame Style="{StaticResource calendarItem}">
                             <StackLayout>
-                                <Label Style="{StaticResource label}" Text="{Binding Name}" FontSize="Medium"/>
-                                <Label Style="{StaticResource label}" Text="{Binding DateCreated}"/>
+                                <Label Style="{StaticResource label}" Text="{Binding Name}"
+                                       FontSize="18"/>
+                                <Label Style="{StaticResource label}" Text="{Binding TimeCreated}"
+                                       FontSize="16"/>
                             </StackLayout>
                         </Frame>
                     </StackLayout>
