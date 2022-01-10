@@ -19,9 +19,14 @@ namespace Mootra
             DependencyService.Get<IEmotionService>(DependencyFetchTarget.GlobalInstance);
 
         /// <summary>
-        /// The contains the current list of emotions.
+        /// Contains the current list of emotions.
         /// </summary>
         private IEnumerable<Emotion> emotions = new List<Emotion>();
+
+        /// <summary>
+        /// Contains the current list of emotion groups.
+        /// </summary>
+        private List<EmotionGroup> emotionGroups = new List<EmotionGroup>();
 
         /// <summary>
         /// Initializes a new instance of the BrowseEmotionsViewModel class.
@@ -31,6 +36,18 @@ namespace Mootra
             this.Refresh = new AsyncCommand(this.OnRefresh);
             this.Remove = new AsyncCommand(this.OnRemove);
             this.Edit = new AsyncCommand(this.OnEdit);
+
+            // Test Emotion Group.
+            this.emotionGroups.Add(new EmotionGroup(DateTime.MaxValue, new List<Emotion>
+            {
+                new Emotion { Name = "Happy", DateCreated = DateTime.MaxValue },
+                new Emotion { Name = "Sad", DateCreated = DateTime.MaxValue },
+            }));
+            this.emotionGroups.Add(new EmotionGroup(DateTime.MinValue, new List<Emotion>
+            {
+                new Emotion { Name = "Frustrated", DateCreated = DateTime.MinValue },
+                new Emotion { Name = "Anxious", DateCreated = DateTime.MinValue },
+            }));
         }
 
         /// <summary>
@@ -60,6 +77,15 @@ namespace Mootra
         {
             get => this.emotions;
             set => this.SetProperty(ref this.emotions, value);
+        }
+
+        /// <summary>
+        /// Gets or sets the current list of emotion groups.
+        /// </summary>
+        public List<EmotionGroup> EmotionGroups
+        {
+            get => this.emotionGroups;
+            set => this.SetProperty(ref this.emotionGroups, value);
         }
 
         /// <summary>

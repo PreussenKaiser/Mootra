@@ -32,13 +32,23 @@
     </ContentPage.ToolbarItems>
 
     <RefreshView IsRefreshing="{Binding IsBusy}" Command="{Binding Refresh}" Padding="30,0,30,0">
-        <CollectionView ItemsSource="{Binding Emotions}" ItemsLayout="VerticalGrid, 2"
-                        SelectionMode="Single" SelectedItem="{Binding SelectedEmotion}">
+        <CollectionView ItemsSource="{Binding EmotionGroups}" ItemsLayout="VerticalGrid, 2"
+                        SelectionMode="Single" SelectedItem="{Binding SelectedEmotion}"
+                        IsGrouped="True">
             <CollectionView.Header>
                 <StackLayout Style="{StaticResource header}" Margin="0,0,0,48">
                     <Label Text="Calendar" Style="{StaticResource title}"/>
                 </StackLayout>
             </CollectionView.Header>
+
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="0,16,0,16">
+                        <Label Text="{Binding DateCreated}" Style="{StaticResource label}"
+                               FontSize="Large"/>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Emotion">
