@@ -41,7 +41,6 @@ namespace Mootra
         {
             this.Refresh = new AsyncCommand(this.OnRefresh);
             this.Submit = new AsyncCommand(this.OnSubmit);
-            this.GoToSettings = new AsyncCommand(this.OnGoToSettings);
         }
 
         /// <summary>
@@ -53,11 +52,6 @@ namespace Mootra
         /// Gets the action to take when submitting a mood.
         /// </summary>
         public AsyncCommand Submit { get; }
-
-        /// <summary>
-        /// Gets the action to take when changing theme.
-        /// </summary>
-        public AsyncCommand GoToSettings { get; }
 
         /// <summary>
         /// Gets or sets the text in UI inputs.
@@ -132,15 +126,6 @@ namespace Mootra
 
                 await this.OnRefresh();
             }
-        }
-
-        /// <summary>
-        /// Goes to the settings page.
-        /// </summary>
-        /// <returns>No value.</returns>
-        private async Task OnGoToSettings()
-        {
-            await Shell.Current.GoToAsync(nameof(SettingsPage));
         }
     }
 }

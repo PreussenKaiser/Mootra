@@ -37,7 +37,7 @@
                         IsGrouped="True">
             <CollectionView.Header>
                 <StackLayout Style="{StaticResource header}" Margin="0,0,0,48">
-                    <Label Text="Calendar" Style="{StaticResource title}"/>
+                    <Label Text="Browse" Style="{StaticResource title}"/>
                 </StackLayout>
             </CollectionView.Header>
 
@@ -69,7 +69,7 @@
                                 <Label Style="{StaticResource label}" Text="{Binding Name}"
                                        FontSize="18"/>
                                 <Label Style="{StaticResource label}" Text="{Binding TimeCreated}"
-                                       FontSize="16"/>
+                                       FontSize="16" Opacity=".5"/>
                             </StackLayout>
                         </Frame>
                     </StackLayout>

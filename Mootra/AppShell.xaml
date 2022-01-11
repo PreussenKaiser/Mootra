@@ -34,6 +34,11 @@
                 <FontImageSource Glyph="{StaticResource CalendarIcon}" FontFamily="FAR"/>
             </ShellContent.Icon>
         </ShellContent>
+        <ShellContent Title="Settings" ContentTemplate="{DataTemplate local:SettingsPage}" Route="SettingsPage">
+            <ShellContent.Icon>
+                <FontImageSource Glyph="{StaticResource GearIcon}" FontFamily="FAS"/>
+            </ShellContent.Icon>
+        </ShellContent>
     </TabBar>
 
 </Shell>

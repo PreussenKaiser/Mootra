@@ -56,7 +56,6 @@
             <Style x:Key="picker" TargetType="Picker">
                 <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource textColor},
                                                                      Dark={StaticResource textColorDark}}"/>
-                <Setter Property="TitleColor" Value="#808080"/>
             </Style>
 
             <Style x:Key="entry" TargetType="Entry">

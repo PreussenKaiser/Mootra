@@ -19,5 +19,8 @@ Mootra.Android/Settings.StyleCop
 Mootra.Android/StyleCop.Cache
 Mootra/Mootra.Android.csproj.user
 
+# Visual Studio
+.vs
+
 # MacOS
 .DS_Store

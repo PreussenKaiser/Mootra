@@ -14,18 +14,9 @@
         <xct:EventToCommandBehavior EventName="Appearing" Command="{Binding Refresh}"/>
     </ContentPage.Behaviors>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding GoToSettings}">
-            <ToolbarItem.IconImageSource>
-                <FontImageSource Size="Large" Glyph="{StaticResource GearIcon}"
-                                 FontFamily="FAS"/>
-            </ToolbarItem.IconImageSource>
-        </ToolbarItem>
-    </ContentPage.ToolbarItems>
-
     <StackLayout Padding="30,0,30,0">
         <StackLayout Style="{StaticResource header}">
-            <Label Text="Mootra" Style="{StaticResource title}"/>
+            <Label Text="Add" Style="{StaticResource title}"/>
         </StackLayout>
 
         <StackLayout VerticalOptions="CenterAndExpand">
