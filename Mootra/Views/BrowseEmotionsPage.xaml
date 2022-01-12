@@ -31,7 +31,8 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 
-    <RefreshView IsRefreshing="{Binding IsBusy}" Command="{Binding Refresh}" Padding="30,0,30,0">
+    <RefreshView Style="{StaticResource pageContent}" Command="{Binding Refresh}"
+                 IsRefreshing="{Binding IsBusy}">
         <CollectionView ItemsSource="{Binding EmotionGroups}" ItemsLayout="VerticalGrid, 2"
                         SelectionMode="Single" SelectedItem="{Binding SelectedEmotion}"
                         IsGrouped="True">
@@ -44,7 +45,7 @@
             <CollectionView.GroupHeaderTemplate>
                 <DataTemplate>
                     <StackLayout Padding="16">
-                        <Label Text="{Binding Key}" Style="{StaticResource label}"
+                        <Label Text="{Binding Key, StringFormat='{0:MMMM dd, yyyy}'}" Style="{StaticResource label}"
                                FontSize="Large" HorizontalOptions="Center"/>
                     </StackLayout>
                 </DataTemplate>
@@ -67,9 +68,9 @@
                         <Frame Style="{StaticResource calendarItem}">
                             <StackLayout>
                                 <Label Style="{StaticResource label}" Text="{Binding Name}"
-                                       FontSize="18"/>
+                                       FontSize="Medium"/>
                                 <Label Style="{StaticResource label}" Text="{Binding DateCreated, StringFormat='{0:h:mm tt}'}"
-                                       FontSize="16" Opacity=".5"/>
+                                       FontSize="Subtitle" Opacity=".5"/>
                             </StackLayout>
                         </Frame>
                     </Frame>

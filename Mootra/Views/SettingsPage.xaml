@@ -9,7 +9,7 @@
         <viewmodels:SettingsPageViewModel/>
     </ContentPage.BindingContext>
 
-    <StackLayout Padding="30,0">
+    <StackLayout Style="{StaticResource pageContent}">
         <StackLayout Style="{StaticResource header}">
             <Label Text="Settings" Style="{StaticResource title}"/>
         </StackLayout>

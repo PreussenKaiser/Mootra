@@ -27,7 +27,7 @@ namespace Mootra
         /// <summary>
         /// The current list of emotion groups.
         /// </summary>
-        private IEnumerable<IGrouping<string, Emotion>> emotionGroups;
+        private IEnumerable<IGrouping<DateTime, Emotion>> emotionGroups;
 
         /// <summary>
         /// Initializes a new instance of the BrowseEmotionsViewModel class.
@@ -71,7 +71,7 @@ namespace Mootra
         /// <summary>
         /// Gets or sets the current list of emotion groups.
         /// </summary>
-        public IEnumerable<IGrouping<string, Emotion>> EmotionGroups
+        public IEnumerable<IGrouping<DateTime, Emotion>> EmotionGroups
         {
             get => this.emotionGroups;
             set => this.SetProperty(ref this.emotionGroups, value);
@@ -89,7 +89,7 @@ namespace Mootra
             this.Emotions = await this.emotionService.QueryEmotionsAsync("select * from Emotion order by DateCreated desc");
 
             // Orders groups by date in descending order.
-            this.EmotionGroups = this.Emotions.GroupBy(e => e.DateCreated.ToShortDateString()).OrderByDescending(e => e.Key);
+            this.EmotionGroups = this.Emotions.GroupBy(e => e.DateCreated.Date).OrderByDescending(g => g.Key);
 
             this.IsBusy = false;
         }
@@ -120,7 +120,7 @@ namespace Mootra
             if (await this.EmotionIsSelected())
             {
                 string userInput = await Application.Current.MainPage.
-                    DisplayPromptAsync("Edit name", null);
+                    DisplayPromptAsync("Edit name", null, "OK", "Cancel", null, -1, null, this.SelectedEmotion.Name);
 
                 if (!string.IsNullOrWhiteSpace(userInput))
                 {
