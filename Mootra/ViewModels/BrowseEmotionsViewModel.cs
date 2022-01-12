@@ -85,8 +85,10 @@ namespace Mootra
         {
             this.IsBusy = true;
 
-            // Selects all emotions.
-            this.Emotions = await this.emotionService.QueryEmotionsAsync("select * from Emotion");
+            // Selects all emotions and orders them by time in descending order.
+            this.Emotions = await this.emotionService.QueryEmotionsAsync("select * from Emotion order by DateCreated desc");
+
+            // Orders groups by date in descending order.
             this.EmotionGroups = this.Emotions.GroupBy(e => e.DateCreated.ToShortDateString()).OrderByDescending(e => e.Key);
 
             this.IsBusy = false;
