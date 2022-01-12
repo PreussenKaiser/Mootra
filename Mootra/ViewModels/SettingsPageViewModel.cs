@@ -61,6 +61,18 @@ namespace Mootra
         /// <summary>
         /// Gets the current version of the application.
         /// </summary>
-        public string AppVersion => $"Version: {VersionTracking.CurrentVersion}";
+        public string AppVersion
+        {
+            get
+            {
+                string version = $"Mootra v{VersionTracking.CurrentVersion}";
+
+#if DEBUG
+                version = $"Mootra DEBUG";
+#endif
+
+                return version;
+            }
+        }
     }
 }

@@ -14,7 +14,7 @@
         <xct:EventToCommandBehavior EventName="Appearing" Command="{Binding Refresh}"/>
     </ContentPage.Behaviors>
 
-    <StackLayout Padding="30,0,30,0">
+    <StackLayout Padding="30,0">
         <StackLayout Style="{StaticResource header}">
             <Label Text="Add" Style="{StaticResource title}"/>
         </StackLayout>

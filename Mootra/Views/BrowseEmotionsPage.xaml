@@ -43,7 +43,7 @@
 
             <CollectionView.GroupHeaderTemplate>
                 <DataTemplate>
-                    <StackLayout Padding="16,16,16,16">
+                    <StackLayout Padding="16">
                         <Label Text="{Binding Key}" Style="{StaticResource label}"
                                FontSize="Large" HorizontalOptions="Center"/>
                     </StackLayout>
@@ -52,13 +52,13 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Emotion">
-                    <StackLayout Padding="10,0,0,10">
+                    <Frame Style="{StaticResource collectionCell}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup Name="CommonStates">
                                 <VisualState Name="Normal"/>
                                 <VisualState Name="Selected">
                                     <VisualState.Setters>
-                                        <Setter Property="BackgroundColor" Value="Transparent"/>
+                                        <Setter Property="BackgroundColor" Value="DeepSkyBlue"/>
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
@@ -68,11 +68,11 @@
                             <StackLayout>
                                 <Label Style="{StaticResource label}" Text="{Binding Name}"
                                        FontSize="18"/>
-                                <Label Style="{StaticResource label}" Text="{Binding DateCreated, StringFormat='{0:h:mm tt}'}}"
+                                <Label Style="{StaticResource label}" Text="{Binding DateCreated, StringFormat='{0:h:mm tt}'}"
                                        FontSize="16" Opacity=".5"/>
                             </StackLayout>
                         </Frame>
-                    </StackLayout>
+                    </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
