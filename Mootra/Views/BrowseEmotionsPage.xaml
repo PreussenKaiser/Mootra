@@ -68,7 +68,7 @@
                             <StackLayout>
                                 <Label Style="{StaticResource label}" Text="{Binding Name}"
                                        FontSize="18"/>
-                                <Label Style="{StaticResource label}" Text="{Binding TimeCreated}"
+                                <Label Style="{StaticResource label}" Text="{Binding DateCreated, StringFormat='{0:h:mm tt}'}}"
                                        FontSize="16" Opacity=".5"/>
                             </StackLayout>
                         </Frame>
