@@ -87,7 +87,7 @@ namespace Mootra
 
             // Selects all emotions.
             this.Emotions = await this.emotionService.QueryEmotionsAsync("select * from Emotion");
-            this.EmotionGroups = this.Emotions.GroupBy(e => e.DateCreated.ToShortDateString());
+            this.EmotionGroups = this.Emotions.GroupBy(e => e.DateCreated.ToShortDateString()).OrderByDescending(e => e.Key);
 
             this.IsBusy = false;
         }
