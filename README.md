@@ -1,4 +1,4 @@
-![Mootra Banner](/Mootra/Resources/Images/banner.png)
+![Mootra Banner](Mootra/Resources/Images/banner.png)
 
 # Mootra
 An open source mood tracker app for Android built in Xamarin Forms.
