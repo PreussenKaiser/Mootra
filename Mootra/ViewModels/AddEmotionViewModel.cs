@@ -25,7 +25,7 @@ namespace Mootra
         private string text;
 
         /// <summary>
-        /// Determines wheither the picker is enabled or not.
+        /// A value indicating wheither the picker is enabled or not.
         /// </summary>
         private bool isPickerEnabled;
 
@@ -77,7 +77,7 @@ namespace Mootra
         }
 
         /// <summary>
-        /// Gets or sets wheither the picker is enabled or not.
+        /// Gets or sets a value indicating the picker is enabled or not.
         /// </summary>
         public bool IsPickerEnabled
         {

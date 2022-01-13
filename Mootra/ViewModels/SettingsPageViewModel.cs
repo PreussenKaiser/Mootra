@@ -65,10 +65,12 @@ namespace Mootra
         {
             get
             {
-                string version = $"Mootra v{VersionTracking.CurrentVersion}";
+                string version = "Mootra ";
 
 #if DEBUG
-                version = $"Mootra DEBUG";
+                version += "DEBUG";
+#else
+                version += $"v{VersionTracking.CurrentVersion}";
 #endif
 
                 return version;
