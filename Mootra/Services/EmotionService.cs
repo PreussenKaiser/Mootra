@@ -62,7 +62,7 @@ namespace Mootra
         /// Gets emotions from the local database.
         /// </summary>
         /// <param name="query">Queries the local database for an enumerable of emotions.</param>
-        /// <returns>No value.</returns>
+        /// <returns>The result of the query.</returns>
         public async Task<IEnumerable<Emotion>> QueryEmotionsAsync(string query)
         {
             await this.Init();

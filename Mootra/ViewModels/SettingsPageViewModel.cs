@@ -1,6 +1,5 @@
 ﻿using System;
 using MvvmHelpers;
-using Xamarin.Essentials;
 
 namespace Mootra
 {

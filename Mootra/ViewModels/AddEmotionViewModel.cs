@@ -10,7 +10,6 @@ namespace Mootra
     /// <summary>
     /// The class which contains the backend for the AddEmotion page.
     /// </summary>
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.StyleCop.CSharp.ReadabilityRules", "SA1126:PrefixCallsCorrectly", Justification = "Cannot implement suggested prefixes.")]
     public class AddEmotionViewModel : BaseViewModel
     {
         /// <summary>

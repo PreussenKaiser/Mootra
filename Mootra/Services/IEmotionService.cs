@@ -35,7 +35,7 @@ namespace Mootra
         /// Queries the database for an enumerable of emotions.
         /// </summary>
         /// <param name="query">The query to use.</param>
-        /// <returns>No value.</returns>
+        /// <returns>The result of the query.</returns>
         Task<IEnumerable<Emotion>> QueryEmotionsAsync(string query);
     }
 }
