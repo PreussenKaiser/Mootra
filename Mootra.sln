@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32002.261
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mootra.Android", "Mootra.Android\Mootra.Android.csproj", "{90751C0F-D32E-4DC4-9531-7E3BA24FE8BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mootra.MobileApp", "src\Mootra.MobileApp\Mootra.MobileApp.csproj", "{C4823AFA-A2F8-4759-81EB-CEE471293780}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mootra", "Mootra\Mootra.csproj", "{EC54D8F2-106E-4E57-9D4E-291896723E0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mootra.Core", "src\Mootra.Core\Mootra.Core.csproj", "{A6BED641-532C-473E-BA78-34F09D33F708}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mootra.Infrastructure", "src\Mootra.Infrastructure\Mootra.Infrastructure.csproj", "{D19D10A6-0FCA-4331-98B4-152440FFEC4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mootra.Android", "src\Mootra.Android\Mootra.Android.csproj", "{90751C0F-D32E-4DC4-9531-7E3BA24FE8BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,18 +17,24 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C4823AFA-A2F8-4759-81EB-CEE471293780}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4823AFA-A2F8-4759-81EB-CEE471293780}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4823AFA-A2F8-4759-81EB-CEE471293780}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4823AFA-A2F8-4759-81EB-CEE471293780}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6BED641-532C-473E-BA78-34F09D33F708}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6BED641-532C-473E-BA78-34F09D33F708}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6BED641-532C-473E-BA78-34F09D33F708}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6BED641-532C-473E-BA78-34F09D33F708}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D19D10A6-0FCA-4331-98B4-152440FFEC4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D19D10A6-0FCA-4331-98B4-152440FFEC4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D19D10A6-0FCA-4331-98B4-152440FFEC4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D19D10A6-0FCA-4331-98B4-152440FFEC4A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{90751C0F-D32E-4DC4-9531-7E3BA24FE8BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{90751C0F-D32E-4DC4-9531-7E3BA24FE8BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90751C0F-D32E-4DC4-9531-7E3BA24FE8BE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{90751C0F-D32E-4DC4-9531-7E3BA24FE8BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90751C0F-D32E-4DC4-9531-7E3BA24FE8BE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{90751C0F-D32E-4DC4-9531-7E3BA24FE8BE}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{EC54D8F2-106E-4E57-9D4E-291896723E0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC54D8F2-106E-4E57-9D4E-291896723E0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EC54D8F2-106E-4E57-9D4E-291896723E0D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{EC54D8F2-106E-4E57-9D4E-291896723E0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EC54D8F2-106E-4E57-9D4E-291896723E0D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EC54D8F2-106E-4E57-9D4E-291896723E0D}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
