@@ -1,5 +1,4 @@
-﻿using Mootra.Core.Services;
-using Mootra.Infrastructure.Services;
+﻿using Mootra.Mobile.Extensions;
 
 namespace Mootra.Mobile;
 
@@ -18,12 +17,12 @@ public static class MauiProgram
 
 		builder
 			.UseMauiApp<App>()
+			.ConfigureViews()
+			.ConfigureServices()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 			});
-
-		builder.Services.AddSingleton<IEmotionService, EmotionService>();
 
 		builder.Services.AddMauiBlazorWebView();
 

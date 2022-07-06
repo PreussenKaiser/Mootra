@@ -37,7 +37,7 @@ public interface IEmotionService
     /// <summary>
     /// Deletes an emotion in the service.
     /// </summary>
-    /// <param name="id">The identifier of the emotion to delete.</param>
+    /// <param name="emotion">The emotion to delete.</param>
     /// <returns>Whether the task was completed or not.</returns>
-    Task DeleteEmotionAsync(int id);
+    Task DeleteEmotionAsync(Emotion emotion);
 }

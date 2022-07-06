@@ -45,21 +45,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Remove="compilerconfig.json" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <_ContentIncludedByDefault Remove="compilerconfig.json" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <ProjectReference Include="..\Mootra.Components\Mootra.Components.csproj" />
 	  <ProjectReference Include="..\Mootra.Core\Mootra.Core.csproj" />
 	  <ProjectReference Include="..\Mootra.Infrastructure\Mootra.Infrastructure.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Include="compilerconfig.json" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -67,8 +55,39 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\MainPage.xaml.cs">
-	    <DependentUpon>MainPage.xaml</DependentUpon>
+	  <Compile Update="Views\BrowseEmotionsPage.xaml.cs">
+	    <DependentUpon>BrowseEmotionsPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\AddEmotionPage.xaml.cs">
+	    <DependentUpon>AddEmotionPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\DesktopShell.xaml.cs">
+	    <DependentUpon>DesktopShell.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Resources\Raw\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Resources\Styles\Colors.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\Styles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\BrowseEmotionsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\DesktopShell.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MobileShell.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ProfilePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 </Project>

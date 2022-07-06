@@ -1,4 +1,4 @@
-﻿using Mootra.Infrastructure.Data;
+﻿using Mootra.Infrastructure.Abstractions;
 
 using Mootra.Core.Services;
 using Mootra.Core.Models;
@@ -13,13 +13,13 @@ public class EmotionService : IEmotionService
 	/// <summary>
 	/// The database to query.
 	/// </summary>
-	private readonly EmotionContext database;
+	private readonly IRepository<Emotion> database;
 
 	/// <summary>
 	/// Initializes a new instance of the <see cref="EmotionService"/> class.
 	/// </summary>
 	/// <param name="database">The database to query.</param>
-	public EmotionService(EmotionContext database)
+	public EmotionService(IRepository<Emotion> database)
 		=> this.database = database;
 
 	/// <summary>
@@ -28,11 +28,7 @@ public class EmotionService : IEmotionService
 	/// <param name="emotion">The entry to create.</param>
 	/// <returns>Whether the task was completed or not.</returns>
 	public async Task CreateEmotionAsync(Emotion emotion)
-	{
-		await this.database.Emotions.AddAsync(emotion);
-
-		await this.database.SaveChangesAsync();
-	}
+		=> await this.database.CreateAsync(emotion);
 
 	/// <summary>
 	/// Returns all emotions from the database.
@@ -40,9 +36,7 @@ public class EmotionService : IEmotionService
 	/// <returns>An enumerable of emotions.</returns>
 	public async Task<IEnumerable<Emotion>> GetAllEmotionsAsync()
 	{
-		List<Emotion> emotions = new();
-
-		await Task.Run(() => emotions = this.database.Emotions.ToList());
+		var emotions = await this.database.GetAllAsync();
 
 		return emotions;
 	}
@@ -52,9 +46,11 @@ public class EmotionService : IEmotionService
 	/// </summary>
 	/// <param name="id">The emotion's identifier.</param>
 	/// <returns>The found emotion.</returns>
-	public Task<Emotion> GetEmotionAsync(int id)
+	public async Task<Emotion> GetEmotionAsync(int id)
 	{
-		throw new NotImplementedException();
+		var emotion = await this.database.GetAsync(id);
+
+		return emotion;
 	}
 
 	/// <summary>
@@ -62,18 +58,14 @@ public class EmotionService : IEmotionService
 	/// </summary>
 	/// <param name="emotion"></param>
 	/// <returns></returns>
-	public Task UpdateEmotionAsync(Emotion emotion)
-	{
-		throw new NotImplementedException();
-	}
+	public async Task UpdateEmotionAsync(Emotion emotion)
+		=> await this.database.UpdateAsync(emotion);
 
 	/// <summary>
-	/// 
+	/// Deletes an emotion in the database.
 	/// </summary>
-	/// <param name="id"></param>
-	/// <returns></returns>
-	public Task DeleteEmotionAsync(int id)
-	{
-		throw new NotImplementedException();
-	}
+	/// <param name="emotion">The emotion to delete.</param>
+	/// <returns>Whether the task was completed or not.</returns>
+	public async Task DeleteEmotionAsync(Emotion emotion)
+		=> await this.database.DeleteAsync(emotion);
 }

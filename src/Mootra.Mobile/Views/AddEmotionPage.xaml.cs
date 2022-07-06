@@ -3,11 +3,11 @@
 /// <summary>
 /// Represents the add emotion page.
 /// </summary>
-public partial class MainPage : ContentPage
+public partial class AddEmotionPage : ContentPage
 {
 	/// <summary>
-	/// Initializes a new instance of the <see cref="MainPage"/> class.
+	/// Initializes a new instance of the <see cref="AddEmotionPage"/> class.
 	/// </summary>
-	public MainPage()
+	public AddEmotionPage()
 		=> this.InitializeComponent();
 }

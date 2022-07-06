@@ -14,6 +14,14 @@ public partial class App : Application
 	{
 		this.InitializeComponent();
 
-		this.MainPage = new MainPage();
+#if ANDROID
+		this.MainPage = new MobileShell();
+#elif WINDOWS
+		this.MainPage = new DesktopShell();
+#endif
+
+		Routing.RegisterRoute(nameof(AddEmotionPage), typeof(AddEmotionPage));
+		Routing.RegisterRoute(nameof(BrowseEmotionsPage), typeof(BrowseEmotionsPage));
+		Routing.RegisterRoute(nameof(ProfilePage), typeof(ProfilePage));
 	}
 }

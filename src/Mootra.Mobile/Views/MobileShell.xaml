@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	   xmlns:vm="clr-namespace:Mootra.Mobile.ViewModels"
+       x:Class="Mootra.Mobile.Views.MobileShell"
+	   x:DataType="vm:ShellViewModel">
+
+	<TabBar>
+		<Tab Title="{Binding AddEmotion.Title}"
+			 Icon="{Binding AddEmotion.Icon}">
+
+			<ShellContent ContentTemplate="{Binding AddEmotion.ContentTemplate}"/>
+		</Tab>
+
+		<Tab Title="{Binding BrowseEmotions.Title}"
+			 Icon="{Binding BrowseEmotions.Icon}">
+
+			<ShellContent ContentTemplate="{Binding BrowseEmotions.ContentTemplate}"/>
+		</Tab>
+
+		<Tab Title="{Binding Profile.Title}"
+			 Icon="{Binding Profile.Icon}">
+
+			<ShellContent ContentTemplate="{Binding Profile.ContentTemplate}"/>
+		</Tab>
+	</TabBar>
+</Shell>
