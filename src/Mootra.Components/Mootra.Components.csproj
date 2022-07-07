@@ -1,13 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+	
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+	
   <ItemGroup>
     <Content Remove="compilerconfig.json" />
+    <Content Remove="wwwroot\css\fonts.less" />
   </ItemGroup>
+	
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\css\fonts.less" />
+  </ItemGroup>
+	
   <ItemGroup>
     <None Include="compilerconfig.json" />
+    <None Include="wwwroot\css\fonts.less" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,4 +26,5 @@
   <ItemGroup>
     <ProjectReference Include="..\Mootra.Core\Mootra.Core.csproj" />
   </ItemGroup>
+	
 </Project>

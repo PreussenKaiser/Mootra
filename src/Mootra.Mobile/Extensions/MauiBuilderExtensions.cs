@@ -1,9 +1,6 @@
 ﻿using Mootra.Mobile.Views;
 
 using Mootra.Core.Services;
-using Mootra.Core.Models;
-using Mootra.Infrastructure.Abstractions;
-using Mootra.Infrastructure.Data;
 using Mootra.Infrastructure.Services;
 
 namespace Mootra.Mobile.Extensions;
@@ -34,11 +31,10 @@ public static class MauiBuilderExtensions
 	/// <returns>The builder with data access added.</returns>
 	public static MauiAppBuilder ConfigureServices(this MauiAppBuilder builder)
 	{
-		string connectionString = "mootra.db";
-		EmotionRepository repository = new(connectionString);
+		string connectionString = Path.Combine(FileSystem.AppDataDirectory, "mootra.db3");
 
-		builder.Services.AddSingleton<IRepository<Emotion>>(repository)
-						.AddSingleton<IEmotionService, EmotionService>();
+		builder.Services.AddSingleton<IEmotionService>(s
+							=> ActivatorUtilities.CreateInstance<EmotionService>(s, connectionString));
 
 		return builder;
 	}

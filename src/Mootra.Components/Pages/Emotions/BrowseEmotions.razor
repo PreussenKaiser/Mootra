@@ -1,0 +1,39 @@
+﻿@page "/browseEmotions"
+@namespace Mootra.Components.Pages
+
+@using Mootra.Core.Services
+@using Mootra.Core.Models
+
+@inject IEmotionService emotionService;
+
+<div class="page-layout bg-black">
+    <Header Title="Browse"/>
+
+    <div class="page-main container bg-dark">
+        <div class="row">
+            @foreach (Emotion e in this.emotions)
+            {
+                <div class="col-6 m-3">
+                    <a class="text-white decoration-none" href="">
+                        <EmotionComponent Model="e"/>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@code
+{
+    /// <summary>
+    /// The entries to display.
+    /// </summary>
+    private IEnumerable<Emotion> emotions = new List<Emotion>();
+
+    /// <summary>
+    /// Executes when the component is initialized.
+    /// </summary>
+    /// <returns>Whether the task was completed or not.</returns>
+    protected override async Task OnInitializedAsync()
+        => this.emotions = await this.emotionService.GetAllEmotionsAsync();
+}

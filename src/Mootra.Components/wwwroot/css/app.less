@@ -1,13 +1,17 @@
 ﻿@import 'variables.less';
+@import 'fonts.less';
+@import 'colors.less';
+@import 'positioning.less';
 @import 'structure.less';
 @import 'navbars.less';
-@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+@import 'buttons.less';
+@import 'forms.less';
+@import url('../lib/open-iconic/font/css/open-iconic-bootstrap.min.css');
 
 * {
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-	height: 100px;
 	scroll-behavior: smooth;
 }
 
@@ -20,10 +24,6 @@ h1:focus {
 	outline: none;
 }
 
-.content {
-	padding-top: 1.1rem;
-}
-
 .valid.modified:not([type=checkbox]) {
 	outline: 1px solid #26b050;
 }
@@ -33,7 +33,7 @@ h1:focus {
 }
 
 .validation-message {
-	color: red;
+	color: orangered;
 }
 
 #blazor-error-ui {

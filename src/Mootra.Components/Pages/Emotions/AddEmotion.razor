@@ -1,0 +1,53 @@
+﻿@page "/"
+@namespace Mootra.Components.Pages
+
+@using Mootra.Core.Services
+@using Mootra.Core.Models
+
+@inject IEmotionService emotionService
+
+<div class="page-layout bg-black">
+    <Header Title="Add"/>
+
+    <EditForm Model="@this.emotionModel" OnValidSubmit="this.NewEmotionSubmit"
+              class="page-main form d-flex flex-column justify-content-between bg-dark p-4">
+
+        <div class="input-group">
+            <div>
+                <label class="form-label h2">
+                    Right now I feel...
+                </label>
+                <InputSelect @bind-Value="this.emotionModel.Title" class="form-control text-white"/>
+            </div>
+            <div>
+                <label class="form-label h3">
+                    Or add a new one...
+                </label>
+                <InputText @bind-Value="this.emotionModel.Title" class="form-control text-white"/>
+            </div>
+
+            <DataAnnotationsValidator/>
+            <ValidationSummary/>
+        </div>
+
+        <div class="row px-3">
+            <button class="btn btn-primary h5">
+                Create
+            </button>
+        </div>
+    </EditForm>
+</div>
+
+@code
+{
+    /// <summary>
+    /// The data model to use for validating new entries.
+    /// </summary>
+    private Emotion emotionModel = new();
+
+    /// <summary>
+    /// Creates the entry.
+    /// </summary>
+    private async void NewEmotionSubmit()
+        => await this.emotionService.CreateEmotionAsync(this.emotionModel);
+}

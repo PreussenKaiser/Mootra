@@ -1,0 +1,21 @@
+﻿@namespace Mootra.Components.Shared.Emotion
+
+@using Mootra.Core.Models
+
+<div class="card d-flex flex-column justify-content-between bg-primary p-3">
+    <h3>
+        @this.Model.Title
+    </h3>
+    <p>
+        @this.Model.Date.ToString("0:h:mm tt");
+    </p>
+</div>
+
+@code
+{
+    /// <summary>
+    /// Gets or initializes the emotion to display.
+    /// </summary>
+    [Parameter]
+    public Emotion Model { get; init; }
+}

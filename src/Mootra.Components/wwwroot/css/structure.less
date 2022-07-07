@@ -1,34 +1,28 @@
-﻿.bg-dark {
-	background-color: #212529;
-}
-
-.bg-black {
-	background-color: black;
-}
-
-.text-white {
-	color: white;
-}
-
-.flex-center {
-	display: flex;
-
-	-webkit-align-items: center;
-	align-items: center;
-
-	-webkit-justify-content: center;
-	justify-content: center;
+﻿.page-layout {
+	display: grid;
+	grid-template-rows: 25vh 75vh;
 }
 
 .page-header {
 	height: 25vh;
 	padding: 0 16px;
 
-	-moz-border-radius: 0 0 32px 32px;
-	-webkit-border-radius: 0 0 32px 32px;
-	border-radius: 0 0 32px 32px;
-
 	h1 {
 		font-size: 2.25rem;
 	}
+}
+
+.page-main {
+	-moz-border-radius: 32px 32px 0 0;
+	-webkit-border-radius: 32px 32px 0 0;
+	border-radius: 32px 32px 0 0;
+}
+
+.card {
+	-webkit-text-decoration: none;
+	text-decoration: none;
+
+	-moz-border-radius: 16px;
+	-webkit-border-radius: 16px;
+	border-radius: 16px;
 }

@@ -1,0 +1,41 @@
+﻿@page "/viewEmotion/{id:int}"
+@namespace Mootra.Components.Pages
+
+@using Mootra.Core.Services
+@using Mootra.Core.Models
+
+@inject IEmotionService emotionService
+
+<div class="page-layout">
+    <Header Title="@this.emotion.Title"/>
+
+    <div class="page-main container bg-dark">
+        <h2>
+            @this.emotion.Title
+        </h2>
+        <h3>
+            @this.emotion.Date.ToString("0:h:mm tt");
+        </h3>
+    </div>
+</div>
+
+@code
+{
+    /// <summary>
+    /// Gets or initializes the identifier of the entry to view.
+    /// </summary>
+    [Parameter]
+    public int Id { get; init; }
+
+    /// <summary>
+    /// The emotion to view.
+    /// </summary>
+    private Emotion emotion = new();
+
+    /// <summary>
+    /// Initializes the pages model.
+    /// </summary>
+    /// <returns>Whether the task was completed or not.</returns>
+    protected override async Task OnInitializedAsync()
+        => this.emotion = await this.emotionService.GetEmotionAsync(this.Id);
+}
